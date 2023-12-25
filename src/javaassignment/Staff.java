@@ -22,6 +22,7 @@ public class Staff {
     Staff(String u, String pw){
         username = u;
         password = pw;
+        detailsList = new ArrayList<>();  // Initialize detailsList
     }
     
     public void readFile(){
@@ -39,8 +40,8 @@ public class Staff {
     }
     
     public Boolean verifyUser(){
-        for (String[] details : detailsList){
-            if (username == details[1] && password == details[2]){
+        for (var details : detailsList){
+            if (username.equals(details[1]) && password.equals(details[2])){
                 verifiedUserDetails = details;
                 userType = verifiedUserDetails[6];
                 return true;
