@@ -4,6 +4,11 @@
  */
 package javaassignment;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -101,8 +106,15 @@ public class TestLogin extends javax.swing.JFrame {
         obj1.readFile();
         if (obj1.verifyUser()){
             JOptionPane.showMessageDialog(null,"Login successful.","Success",JOptionPane.INFORMATION_MESSAGE);
-            AdminHome a = new AdminHome();
-            a.setVisible(true);
+            try {
+                obj1.createSession();
+            } catch (IOException ex) {
+                Logger.getLogger(TestLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (obj1.getUserType().equals("admin")){
+                AdminHome a = new AdminHome();
+                a.setVisible(true);
+            }
             this.setVisible(false);
         }
         else {
