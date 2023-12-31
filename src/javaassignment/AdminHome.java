@@ -27,6 +27,7 @@ public class AdminHome extends javax.swing.JFrame {
     private void initComponents() {
 
         btnPersonalProfile = new javax.swing.JButton();
+        btnWorkerProfile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,13 +38,22 @@ public class AdminHome extends javax.swing.JFrame {
             }
         });
 
+        btnWorkerProfile.setText("Manage Worker Profile");
+        btnWorkerProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWorkerProfileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
-                .addComponent(btnPersonalProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPersonalProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .addComponent(btnWorkerProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -51,7 +61,9 @@ public class AdminHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(btnPersonalProfile)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(btnWorkerProfile)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         pack();
@@ -63,6 +75,13 @@ public class AdminHome extends javax.swing.JFrame {
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnPersonalProfileActionPerformed
+
+    private void btnWorkerProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkerProfileActionPerformed
+        // TODO add your handling code here:
+        WorkerProfile a = new WorkerProfile();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnWorkerProfileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,5 +120,6 @@ public class AdminHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPersonalProfile;
+    private javax.swing.JButton btnWorkerProfile;
     // End of variables declaration//GEN-END:variables
 }

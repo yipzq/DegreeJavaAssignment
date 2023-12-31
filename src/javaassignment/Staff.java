@@ -114,6 +114,10 @@ public class Staff {
         br.close();
     }
     
+    public void setStaffID(int staffID){
+        this.staffID = staffID;
+    }
+    
     public String[] getVerifiedUserDetails(){
         for (var details : detailsList){
             if (staffID == Integer.parseInt(details[0])){
