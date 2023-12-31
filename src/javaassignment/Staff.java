@@ -41,6 +41,7 @@ public class Staff {
     }*/
     
     public void readFile(){
+        detailsList.clear();
         try  {
             BufferedReader br = new BufferedReader(new FileReader("staffDetails.txt"));
             String line;
