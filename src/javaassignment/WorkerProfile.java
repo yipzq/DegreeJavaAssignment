@@ -21,6 +21,7 @@ public class WorkerProfile extends javax.swing.JFrame {
     int staffID;
     DefaultTableModel model;
     Staff obj1 = new Staff();
+    Admin obj2 = new Admin();
     ArrayList<String[]> detailsList = new ArrayList<>();
     /**
      * Creates new form WorkerProfile
@@ -28,11 +29,18 @@ public class WorkerProfile extends javax.swing.JFrame {
     public WorkerProfile() {
         initComponents();
         model = (DefaultTableModel) table.getModel();
-        obj1.readFile();
-        detailsList = obj1.getDetailsList();
+        displayWorkerDetails();
+    }
+    
+    private void displayWorkerDetails(){
+        model.setRowCount(0);
+        obj2.readFile();
+        detailsList = obj2.getDetailsList();
         for (String[] details : detailsList){
-            if (!details[6].equals("admin")){
-                model.insertRow(model.getRowCount(), new Object[]{details[0],details[1],details[2],details[3],details[4],details[5],details[6]});
+            if (details.length == 7){
+                if (!details[6].equals("Admin")){
+                    model.insertRow(model.getRowCount(), new Object[]{details[0],details[1],details[2],details[3],details[4],details[5],details[6]});
+                }
             }
         }
     }
@@ -58,6 +66,9 @@ public class WorkerProfile extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         cmbPosition = new javax.swing.JComboBox<>();
         btnSaveChanges = new javax.swing.JButton();
+        btnCreateAccount = new javax.swing.JButton();
+        btnDeleteAccount = new javax.swing.JButton();
+        btnClearForm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,10 +112,31 @@ public class WorkerProfile extends javax.swing.JFrame {
 
         cmbPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--None--", "Officer", "Admin", "Salesperson" }));
 
-        btnSaveChanges.setText("Save Changes");
+        btnSaveChanges.setText("Edit Row");
         btnSaveChanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveChangesActionPerformed(evt);
+            }
+        });
+
+        btnCreateAccount.setText("+ Create Account");
+        btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAccountActionPerformed(evt);
+            }
+        });
+
+        btnDeleteAccount.setText("Delete Account");
+        btnDeleteAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteAccountActionPerformed(evt);
+            }
+        });
+
+        btnClearForm.setText("Clear Form");
+        btnClearForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearFormActionPerformed(evt);
             }
         });
 
@@ -113,6 +145,26 @@ public class WorkerProfile extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rbMale, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnClearForm)
+                        .addGap(49, 49, 49))))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -120,21 +172,12 @@ public class WorkerProfile extends javax.swing.JFrame {
                             .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbMale, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(btnSaveChanges)))
+                        .addGap(119, 119, 119)
+                        .addComponent(btnCreateAccount)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSaveChanges)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeleteAccount)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -145,7 +188,9 @@ public class WorkerProfile extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClearForm))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -158,9 +203,12 @@ public class WorkerProfile extends javax.swing.JFrame {
                 .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btnSaveChanges)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSaveChanges)
+                    .addComponent(btnCreateAccount)
+                    .addComponent(btnDeleteAccount))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -216,36 +264,84 @@ public class WorkerProfile extends javax.swing.JFrame {
             name = txtFullName.getText();
             if (rbMale.isSelected()){
                 gender = "Male";
-            } else {
+            } else if (rbFemale.isSelected()){
                 gender = "Female";
+            } else {
+                gender = "";
             }
             phoneNumber = txtPhoneNumber.getText();
             position = String.valueOf(cmbPosition.getSelectedItem());
             String[] details = {String.valueOf(staffID), username, password, name, gender, phoneNumber, position};
             
-            obj1.setStaffID(staffID);
-            obj1.getVerifiedUserDetails();
+            obj2.setStaffID(staffID);
+            obj2.getVerifiedUserDetails();
             int count = 0;
             for (var detail : details){
-                obj1.changeDetails(detail, count);
+                obj2.changeDetails(detail, count);
                 count ++;
             }
             try {
-                obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
+                obj2.overwriteFile("staffDetails.txt", obj2.getDetailsList(), 7);
             } catch (IOException ex) {
                 Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            table.setValueAt(username, table.getSelectedRow(), 1);
-            table.setValueAt(password, table.getSelectedRow(), 2);
-            table.setValueAt(name, table.getSelectedRow(), 3);
-            table.setValueAt(gender, table.getSelectedRow(), 4);
-            table.setValueAt(phoneNumber, table.getSelectedRow(), 5);
-            table.setValueAt(position, table.getSelectedRow(), 6);
+
+            displayWorkerDetails();
+            //table.setValueAt(username, table.getSelectedRow(), 1);
+            //table.setValueAt(password, table.getSelectedRow(), 2);
+            //table.setValueAt(name, table.getSelectedRow(), 3);
+            //table.setValueAt(gender, table.getSelectedRow(), 4);
+            //table.setValueAt(phoneNumber, table.getSelectedRow(), 5);
+            //table.setValueAt(position, table.getSelectedRow(), 6);
             
             JOptionPane.showMessageDialog(null,"Details edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveChangesActionPerformed
+
+    private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
+        // TODO add your handling code here:
+        String username, password, name, gender, phoneNumber, position;
+        username = txtUsername.getText();
+        password = String.valueOf(txtPassword.getPassword());
+        name = txtFullName.getText();
+        if (rbMale.isSelected()){
+            gender = "Male";
+        } else if (rbFemale.isSelected()){
+            gender = "Female";
+        } else {
+            gender = "";
+        }
+        phoneNumber = txtPhoneNumber.getText();
+        position = String.valueOf(cmbPosition.getSelectedItem());
+        try {
+            obj2.getNewStaffID();
+            obj2.createAccount(username, password, name, gender, phoneNumber, position);
+        } catch (IOException ex) {
+            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        displayWorkerDetails();
+    }//GEN-LAST:event_btnCreateAccountActionPerformed
+
+    private void btnClearFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFormActionPerformed
+        // TODO add your handling code here:
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtFullName.setText("");
+        bgGender.clearSelection();
+        txtPhoneNumber.setText("");
+        cmbPosition.setSelectedIndex(0);
+    }//GEN-LAST:event_btnClearFormActionPerformed
+
+    private void btnDeleteAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAccountActionPerformed
+        // TODO add your handling code here:
+        obj2.setStaffID(staffID);
+        try {
+            obj2.deleteAccount();
+        } catch (IOException ex) {
+            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        displayWorkerDetails();
+    }//GEN-LAST:event_btnDeleteAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,6 +381,9 @@ public class WorkerProfile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgGender;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnClearForm;
+    private javax.swing.JButton btnCreateAccount;
+    private javax.swing.JButton btnDeleteAccount;
     private javax.swing.JButton btnSaveChanges;
     private javax.swing.JComboBox<String> cmbPosition;
     private javax.swing.JScrollPane jScrollPane1;
