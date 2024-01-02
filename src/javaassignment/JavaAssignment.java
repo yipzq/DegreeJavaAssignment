@@ -17,6 +17,7 @@ public class JavaAssignment {
         // TODO code application logic here
         System.out.println("hello");
         System.out.println("joshua noob");
+        System.out.println("jet testing here");
     }
     
 }
