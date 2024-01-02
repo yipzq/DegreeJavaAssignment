@@ -67,7 +67,7 @@
                       <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                       <Component id="btnCreateAccount" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnSaveChanges" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnEditRow" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnDeleteAccount" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -103,7 +103,7 @@
               <Component id="cmbPosition" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="34" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnSaveChanges" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEditRow" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCreateAccount" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnDeleteAccount" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -232,12 +232,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSaveChanges">
+    <Component class="javax.swing.JButton" name="btnEditRow">
       <Properties>
         <Property name="text" type="java.lang.String" value="Edit Row"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveChangesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditRowActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCreateAccount">
