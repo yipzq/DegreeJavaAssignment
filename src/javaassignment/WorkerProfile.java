@@ -65,7 +65,7 @@ public class WorkerProfile extends javax.swing.JFrame {
         rbFemale = new javax.swing.JRadioButton();
         txtPassword = new javax.swing.JPasswordField();
         cmbPosition = new javax.swing.JComboBox<>();
-        btnSaveChanges = new javax.swing.JButton();
+        btnEditRow = new javax.swing.JButton();
         btnCreateAccount = new javax.swing.JButton();
         btnDeleteAccount = new javax.swing.JButton();
         btnClearForm = new javax.swing.JButton();
@@ -112,10 +112,10 @@ public class WorkerProfile extends javax.swing.JFrame {
 
         cmbPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--None--", "Officer", "Admin", "Salesperson" }));
 
-        btnSaveChanges.setText("Edit Row");
-        btnSaveChanges.addActionListener(new java.awt.event.ActionListener() {
+        btnEditRow.setText("Edit Row");
+        btnEditRow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveChangesActionPerformed(evt);
+                btnEditRowActionPerformed(evt);
             }
         });
 
@@ -175,7 +175,7 @@ public class WorkerProfile extends javax.swing.JFrame {
                         .addGap(119, 119, 119)
                         .addComponent(btnCreateAccount)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSaveChanges)
+                        .addComponent(btnEditRow)
                         .addGap(18, 18, 18)
                         .addComponent(btnDeleteAccount)))
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -205,7 +205,7 @@ public class WorkerProfile extends javax.swing.JFrame {
                 .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSaveChanges)
+                    .addComponent(btnEditRow)
                     .addComponent(btnCreateAccount)
                     .addComponent(btnDeleteAccount))
                 .addGap(19, 19, 19))
@@ -251,7 +251,7 @@ public class WorkerProfile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneNumberActionPerformed
 
-    private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
+    private void btnEditRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditRowActionPerformed
         // TODO add your handling code here:
         if (table.getSelectedRowCount() < 1){
             JOptionPane.showMessageDialog(null, "No row selected.","Error",JOptionPane.ERROR_MESSAGE);
@@ -294,9 +294,9 @@ public class WorkerProfile extends javax.swing.JFrame {
             //table.setValueAt(phoneNumber, table.getSelectedRow(), 5);
             //table.setValueAt(position, table.getSelectedRow(), 6);
             
-            JOptionPane.showMessageDialog(null,"Details edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Row edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_btnSaveChangesActionPerformed
+    }//GEN-LAST:event_btnEditRowActionPerformed
 
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         // TODO add your handling code here:
@@ -320,6 +320,7 @@ public class WorkerProfile extends javax.swing.JFrame {
             Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
         displayWorkerDetails();
+        JOptionPane.showMessageDialog(null,"New account created.","Success",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
     private void btnClearFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFormActionPerformed
@@ -334,13 +335,20 @@ public class WorkerProfile extends javax.swing.JFrame {
 
     private void btnDeleteAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAccountActionPerformed
         // TODO add your handling code here:
-        obj2.setStaffID(staffID);
-        try {
-            obj2.deleteAccount();
-        } catch (IOException ex) {
-            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+        if (table.getSelectedRowCount() < 1){
+            JOptionPane.showMessageDialog(null, "No row selected.","Error",JOptionPane.ERROR_MESSAGE);
+        } else if (table.getSelectedRowCount() > 1){
+            JOptionPane.showMessageDialog(null, "More than one row selected.","Error",JOptionPane.ERROR_MESSAGE);
+        } else {
+            obj2.setStaffID(staffID);
+            try {
+                obj2.deleteAccount();
+            } catch (IOException ex) {
+                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            displayWorkerDetails();
+            JOptionPane.showMessageDialog(null,"Account deleted.","Success",JOptionPane.INFORMATION_MESSAGE);
         }
-        displayWorkerDetails();
     }//GEN-LAST:event_btnDeleteAccountActionPerformed
 
     /**
@@ -384,7 +392,7 @@ public class WorkerProfile extends javax.swing.JFrame {
     private javax.swing.JButton btnClearForm;
     private javax.swing.JButton btnCreateAccount;
     private javax.swing.JButton btnDeleteAccount;
-    private javax.swing.JButton btnSaveChanges;
+    private javax.swing.JButton btnEditRow;
     private javax.swing.JComboBox<String> cmbPosition;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbFemale;
