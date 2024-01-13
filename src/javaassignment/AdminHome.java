@@ -28,6 +28,7 @@ public class AdminHome extends javax.swing.JFrame {
 
         btnPersonalProfile = new javax.swing.JButton();
         btnWorkerProfile = new javax.swing.JButton();
+        btnWorkDoneReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +46,13 @@ public class AdminHome extends javax.swing.JFrame {
             }
         });
 
+        btnWorkDoneReport.setText("Generate Work Done Report");
+        btnWorkDoneReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWorkDoneReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -52,9 +60,10 @@ public class AdminHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPersonalProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                    .addComponent(btnWorkerProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(102, Short.MAX_VALUE))
+                    .addComponent(btnPersonalProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnWorkerProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnWorkDoneReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,7 +72,9 @@ public class AdminHome extends javax.swing.JFrame {
                 .addComponent(btnPersonalProfile)
                 .addGap(41, 41, 41)
                 .addComponent(btnWorkerProfile)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(btnWorkDoneReport)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -82,6 +93,13 @@ public class AdminHome extends javax.swing.JFrame {
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnWorkerProfileActionPerformed
+
+    private void btnWorkDoneReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkDoneReportActionPerformed
+        // TODO add your handling code here:
+        WorkDoneReport a = new WorkDoneReport();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnWorkDoneReportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +138,7 @@ public class AdminHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPersonalProfile;
+    private javax.swing.JButton btnWorkDoneReport;
     private javax.swing.JButton btnWorkerProfile;
     // End of variables declaration//GEN-END:variables
 }

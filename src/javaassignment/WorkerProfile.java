@@ -340,14 +340,17 @@ public class WorkerProfile extends javax.swing.JFrame {
         } else if (table.getSelectedRowCount() > 1){
             JOptionPane.showMessageDialog(null, "More than one row selected.","Error",JOptionPane.ERROR_MESSAGE);
         } else {
-            obj2.setStaffID(staffID);
-            try {
-                obj2.deleteAccount();
-            } catch (IOException ex) {
-                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+            int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this account?", "Delete Account", JOptionPane.YES_NO_OPTION);
+            if (n==JOptionPane.YES_OPTION){
+                obj2.setStaffID(staffID);
+                try {
+                    obj2.deleteAccount();
+                } catch (IOException ex) {
+                    Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                displayWorkerDetails();
+                JOptionPane.showMessageDialog(null,"Account deleted.","Success",JOptionPane.INFORMATION_MESSAGE);
             }
-            displayWorkerDetails();
-            JOptionPane.showMessageDialog(null,"Account deleted.","Success",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteAccountActionPerformed
 
