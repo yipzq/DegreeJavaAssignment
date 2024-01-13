@@ -101,7 +101,7 @@
               <Component id="txtPhoneNumber" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="cmbPosition" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnEditRow" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCreateAccount" alignment="3" min="-2" max="-2" attributes="0"/>
