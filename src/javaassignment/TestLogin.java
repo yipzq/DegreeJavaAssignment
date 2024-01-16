@@ -111,9 +111,15 @@ public class TestLogin extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(TestLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (obj1.getUserType().equals("admin")){
+            if (obj1.getUserType().equals("Admin")){
                 AdminHome a = new AdminHome();
                 a.setVisible(true);
+            } else if (obj1.getUserType().equals("Salesperson")){
+                //SalespersonHome a = new SalespersonHome();
+                //a.setVisible(true);
+            } else if (obj1.getUserType().equals("Officer")){
+                //OfficerHome a = new OfficerHome();
+                //a.setVisible(true);
             }
             this.setVisible(false);
         }
