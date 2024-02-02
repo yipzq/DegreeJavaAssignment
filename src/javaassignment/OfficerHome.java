@@ -26,8 +26,16 @@ public class OfficerHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         btnApprove = new javax.swing.JButton();
         btnsearchModi = new javax.swing.JButton();
+        CheckSalesbtn = new javax.swing.JButton();
+        invoicebtn = new javax.swing.JButton();
+
+        jButton2.setText("jButton2");
+
+        jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +53,20 @@ public class OfficerHome extends javax.swing.JFrame {
             }
         });
 
+        CheckSalesbtn.setText("Check Sales order");
+        CheckSalesbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckSalesbtnActionPerformed(evt);
+            }
+        });
+
+        invoicebtn.setText("Generate invoice");
+        invoicebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invoicebtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -53,17 +75,23 @@ public class OfficerHome extends javax.swing.JFrame {
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnsearchModi, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CheckSalesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(invoicebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGap(55, 55, 55)
                 .addComponent(btnApprove)
-                .addGap(38, 38, 38)
+                .addGap(29, 29, 29)
                 .addComponent(btnsearchModi)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(CheckSalesbtn)
+                .addGap(27, 27, 27)
+                .addComponent(invoicebtn)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -80,6 +108,18 @@ public class OfficerHome extends javax.swing.JFrame {
         menu.show();
         dispose();
     }//GEN-LAST:event_btnsearchModiActionPerformed
+
+    private void CheckSalesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSalesbtnActionPerformed
+        // TODO add your handling code here:
+        new CheckSaleOrder().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_CheckSalesbtnActionPerformed
+
+    private void invoicebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoicebtnActionPerformed
+        // TODO add your handling code here:
+        new GenerateInvoice().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_invoicebtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,7 +157,11 @@ public class OfficerHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CheckSalesbtn;
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnsearchModi;
+    private javax.swing.JButton invoicebtn;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }
