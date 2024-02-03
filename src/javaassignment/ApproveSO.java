@@ -22,10 +22,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ApproveSO extends javax.swing.JFrame {
 
-    int staffID;
     DefaultTableModel model;
-    Admin saleso = new Admin();
+    Officer saleso = new Officer();
     ArrayList<String[]> detailsList = new ArrayList<>();
+    
     
     
     public ApproveSO() {
@@ -41,36 +41,14 @@ public class ApproveSO extends javax.swing.JFrame {
         detailsList = saleso.getDetailsList();
         for (String[] details : detailsList){
             if (details.length == 7){
-                if (!details[6].equals("Admin")){
+              //  if (!details[6].equals("Admin")){  // apply changes 
                     model.insertRow(model.getRowCount(), new Object[]{details[0],details[1],details[2],details[3],details[4],details[5],details[6]});
-                }
+              //  }
             }
         }
     }
     
-    
-    private void writeNewData(String[] rowData) {
-    try (PrintWriter writer = new PrintWriter(new FileWriter("ApprovedSO.txt", true))) {
-        rowData[7] = "Approved";
-
-        // Append the selected row data to the text file
-        writer.println("Column1: " + rowData[0] + ", Column2: " + rowData[1] + ", Column3: " + rowData[2]
-                + ", Column4: " + rowData[3] + ", Column5: " + rowData[4] + ", Column6: " + rowData[5]
-                + ", Column7: " + rowData[6] + ", Column8: " + rowData[7]);
-        
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-
-
-    
      
-     
-     
-    
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,92 +118,82 @@ public class ApproveSO extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(btnApprove)
-                        .addGap(66, 66, 66)
-                        .addComponent(btnReject))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnApprove)
+                .addGap(65, 65, 65)
+                .addComponent(btnReject)
+                .addGap(250, 250, 250))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap(77, Short.MAX_VALUE)
                 .addComponent(btnBack)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnApprove)
-                    .addComponent(btnReject))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(btnReject)
+                    .addComponent(btnApprove))
+                .addGap(64, 64, 64))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         if (jTable.getSelectedRowCount() < 1){
-            JOptionPane.showMessageDialog(null, "No row selected.","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No row selected.", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (jTable.getSelectedRowCount() > 1){
-            JOptionPane.showMessageDialog(null, "More than one row selected.","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "More than one row selected.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to reject this sale order?", "Reject Order", JOptionPane.YES_NO_OPTION);
-            if (n==JOptionPane.YES_OPTION){
-                saleso.setStaffID(staffID);
-                try {
-                    saleso.deleteAccount();
-                } catch (IOException ex) {
-                    Logger.getLogger(ApproveSO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                displaySO();
-                JOptionPane.showMessageDialog(null,"Sales order rejected.","Success",JOptionPane.INFORMATION_MESSAGE);
-            }
+            saleso.reject();
+        
+        try {
+            saleso.overwriteFile("ssales.txt", saleso.getDetailsList(), 7);
+        } catch (IOException ex) {
+            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
+        }           
+        displaySO();
+        JOptionPane.showMessageDialog(null,"Row edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE); 
+        
     }//GEN-LAST:event_btnRejectActionPerformed
 
     
+    
+    
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
-     if (jTable.getSelectedRowCount() < 1){
-        JOptionPane.showMessageDialog(null, "No row selected.", "Error", JOptionPane.ERROR_MESSAGE);
-    } else if (jTable.getSelectedRowCount() > 1){
-        JOptionPane.showMessageDialog(null, "More than one row selected.", "Error", JOptionPane.ERROR_MESSAGE);
-    } else {
-        int selectedRowIndex = jTable.getSelectedRow();
-        String[] rowData = new String[jTable.getColumnCount()];
+        if (jTable.getSelectedRowCount() < 1){
+            JOptionPane.showMessageDialog(null, "No row selected.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (jTable.getSelectedRowCount() > 1){
+            JOptionPane.showMessageDialog(null, "More than one row selected.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            saleso.edit();
         
-        // Populate rowData array with data from the selected row
-        for (int i = 0; i < rowData.length; i++) {
-            rowData[i] = jTable.getValueAt(selectedRowIndex, i).toString();
+        try {
+            saleso.overwriteFile("ssales.txt", saleso.getDetailsList(), 7);
+        } catch (IOException ex) {
+            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to approve this sale order?", "Approve Order", JOptionPane.YES_NO_OPTION);
-        if (n == JOptionPane.YES_OPTION) {
-            // Update the status to "Approved"
-            rowData[7] = "Approved";
-            
-            // Write the approved data to a new file
-            writeNewData(rowData);
-            
-            // Optional: You can remove the row from the table or perform other actions as needed
-            // For example, you can use DefaultTableModel to remove the row:
-            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
-            model.removeRow(selectedRowIndex);
-            
-            JOptionPane.showMessageDialog(null, "Sales order approved.", "Success", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
-      
+         
+        }           
+        displaySO();
+        JOptionPane.showMessageDialog(null,"Row edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);    
     }//GEN-LAST:event_btnApproveActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
-        // TODO add your handling code here:
+        int orderID = Integer.parseInt(model.getValueAt(jTable.getSelectedRow(), 0).toString());
+        saleso.getOrderID(orderID);
     }//GEN-LAST:event_jTableMouseClicked
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

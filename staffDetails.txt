@@ -1,6 +1,4 @@
 1,yipzq,password1,Zheng Qing Yip,Male,0182128483,Admin
-2,joshua,password2,Joshua Wong,Male,0123456789,Officer
+2,joshua,password2,Joshua W,Male,0123456789,Officer
 3,jet,password3,Jet Lai,Male,0123456781,Salesperson
 4,seetoh,password4,See Toh Man Cheng,Male,0123456777,Admin
-
-
