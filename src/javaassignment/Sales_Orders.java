@@ -21,9 +21,9 @@ import javaassignment.Salesperson;
  * @author Joshua
  */
 public class Sales_Orders {
-    void addOrders(double i, String f, String c, double p, String oc, String d, String sd){
+    void addOrders(int i, String f, String c, double p, String oc, String d, String sd){
         try {
-            FileWriter fw = new FileWriter("salesOrder.txt", true);
+            FileWriter fw = new FileWriter("furniture.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
             
@@ -39,7 +39,7 @@ public class Sales_Orders {
 }
     
     void editOrders(String o, String n){
-        File f = new File("salesOrder.txt");
+        File f = new File("furniture.txt");
         String oldcontent = "";
         try {
             BufferedReader reader = new BufferedReader (new FileReader(f));

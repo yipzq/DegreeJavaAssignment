@@ -17,24 +17,28 @@ import java.util.ArrayList;
  */
 public class Salesperson extends Staff {
     
+    int id;
+    ArrayList<String[]> arrayList = new ArrayList<>();
+    
     Salesperson(){
         
     }
     
-    public void getNewStaffID() throws IOException{
+    public int getNewID(String file) throws IOException{
         try {
-            BufferedReader br = new BufferedReader(new FileReader("staffDetails.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
             int lineCount = 0;
 
             while (br.readLine() != null) {
                 lineCount++;
             }
-            staffID = lineCount + 1;
+            id = lineCount + 1;
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return id;
     }
     
     public void createAccount(String username, String password, String name, String gender, String phoneNumber, String position) throws IOException{
@@ -63,6 +67,47 @@ public class Salesperson extends Staff {
                 outputFile.println(i[0] + "," + i[1] + "," + i[2] + "," + i[3] + "," + i[4] + "," + i[5] + "," + i[6]);
             }
         }
+        outputFile.close();
+    }
+    
+    public void readFile(String file){
+        arrayList.clear();
+        try  {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] array = line.split(",");
+                arrayList.add(array);
+            }
+            br.close();
+        } catch (IOException e) {
+            
+        }
+    }
+    
+    public ArrayList<String[]> getArrayList(){
+        return arrayList;
+    }
+    
+    public void generateOrder(int itemID, int quantity, double total) throws IOException{
+        FileWriter fw = new FileWriter("salesOrder.txt", true);
+        PrintWriter outputFile = new PrintWriter(fw);
+        int orderID = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("salesOrder.txt"));
+
+            int lineCount = 0;
+
+            while (br.readLine() != null) {
+                lineCount++;
+            }
+            orderID = lineCount + 1;
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String orderCreated = getCurrentDateTime();
+        outputFile.println(orderID + "," + orderCreated + "," + itemID + "," + quantity + "," + total + "," + staffID + ",pending");
         outputFile.close();
     }
 }

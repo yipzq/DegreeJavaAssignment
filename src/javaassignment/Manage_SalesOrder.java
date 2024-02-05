@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javaassignment.Sales_Orders;
@@ -20,8 +21,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Manage_SalesOrder extends javax.swing.JFrame {
 
-    File f = new File("salesOrder.txt");
+    File f = new File("furniture.txt");
     String oldString, newString;
+    Salesperson obj1 = new Salesperson();
     
     /**
      * Creates new form Manage_SalesOrder
@@ -79,7 +81,7 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Manage Sales Order");
+        jLabel1.setText("Manage Products");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("ID Number:");
@@ -102,6 +104,7 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Short Description:");
 
+        tfidNumber.setEnabled(false);
         tfidNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfidNumberActionPerformed(evt);
@@ -121,7 +124,7 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Number", "Furniture Name", "Category", "Price(RM)", "Other Colors", "Designer", "Short Description", "Approval Status"
+                "ID Number", "Furniture Name", "Category", "Price(RM)", "Other Colors", "Designer", "Short Description"
             }
         ));
         Table_Orders.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,8 +188,8 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(346, 346, 346))
+                .addComponent(jLabel1)
+                .addGap(375, 375, 375))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,10 +285,6 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfidNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfidNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfidNumberActionPerformed
-
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
          DefaultTableModel table = (DefaultTableModel) Table_Orders.getModel();
         if (Table_Orders.getSelectedRowCount() == 1){
@@ -345,9 +344,13 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String furnitureName, category, designer, shortDescription, otherColors = null, availability;
         double price;
-        int  idNumber;
+        int idNumber = 0;
         
-        idNumber = Integer.parseInt(tfidNumber.getText());
+        try {
+            idNumber = obj1.getNewID("furniture.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(Manage_SalesOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
         furnitureName = tfFurnitureName.getText();
         category = cbCategory.getSelectedItem().toString();
         designer = tfDesigner.getText();
@@ -410,6 +413,10 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
     private void tfDesignerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDesignerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfDesignerActionPerformed
+
+    private void tfidNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfidNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfidNumberActionPerformed
 
     /**
      * @param args the command line arguments

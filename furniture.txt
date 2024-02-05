@@ -1,0 +1,11 @@
+1,FREKVENS,Bar furniture,265,No,Bar table in/outdoor,Nicholai Wiig Hansen
+2,NORDVIKE,Bar furniture,995,No,Bar table,Francis Cayouette
+3,NORDVIKEN/NORDVIKEN,Bar furniture,2095,No,Bar table and 4 bar stools,Francis Cayouette
+4,STIG,Bar furniture,69,Yes,Bar stool with backrest,Henrik Preutz
+5,MINNEN,Beds,395,No,Ext bed frame with slatted bed base,IKEA of Sweden/Tina Christensen
+6,BRIMNES,Beds,895,No,Bed frame w storage and headboard,IKEA of Sweden/K Hagberg/M Hagberg
+7,JONAXEL,Bookcases & shelving units,135,No,Frame with mesh baskets,IKEA of Sweden
+8,OLAUS,Bookcases & shelving units,290,No,1 shelf section,IKEA of Sweden
+9,BRIMNE,Beds,895.0,No,Bed frame w storage and headboard,IKEA of Sweden/K Hagberg/M Hagberg
+10,BRIMNE,Beds,895.0,No,Bed frame w storage and headboard,IKEA of Sweden/K Hagberg/M Hagberg
+11,JOSH,Sofas,466.0,Yes,IKEA,Sofa
