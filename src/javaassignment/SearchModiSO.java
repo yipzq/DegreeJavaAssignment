@@ -20,26 +20,60 @@ public class SearchModiSO extends javax.swing.JFrame {
     DefaultTableModel model;
     Officer saleso = new Officer();
     ArrayList<String[]> detailsList = new ArrayList<>();
+    int results;
+    String [] sales;
     
     public SearchModiSO() {
         initComponents();
         model = (DefaultTableModel) jTable.getModel();
+        displayASO();
     }
     
     private void displayASO(){
         model.setRowCount(0);
-        saleso.readFile();
+        saleso.readASOFile();
         detailsList = saleso.getDetailsList();
         for (String[] details : detailsList){
-            if (details.length == 7){
-                if (details[6].equals("Approved")){
-                    model.insertRow(model.getRowCount(), new Object[]{details[0],details[1],details[2],details[3],details[4],details[5],details[6]});
-                }
+            if (details.length == 8){
+                //if (details[6].equals("in progress")){
+                    model.insertRow(model.getRowCount(), new Object[]{details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7]});
+                //}
             }
         }
     }
     
+    
+    
+    public void viewAll() {
+        model.setRowCount(0);
+        
+        for (String[] details : detailsList) {
+            if (details.length == 8) {
+                model.insertRow(model.getRowCount(), new Object[]{details[0], details[1], details[2], details[3], details[4], details[5], details[6], details[7]});
+            }
+        }
+    }
+    
+    public void search(int orderID) {
+        boolean found = false;
+        model.setRowCount(0);
+        results = 0;
 
+        for (String[] s : detailsList) {
+            // Assuming orderID is stored as an integer in the details array
+            if (Integer.parseInt(s[0]) == orderID) {
+                sales = s;
+                model.insertRow(model.getRowCount(), new Object[]{sales[0],sales[1],sales[2],sales[3],sales[4],sales[5],sales[6],sales[7]});
+                found = true;
+                results++;
+                break;
+            }
+        }
+
+        if (!found) {
+            JOptionPane.showMessageDialog(null, "Order ID not found.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +94,8 @@ public class SearchModiSO extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         txtFullName = new javax.swing.JTextField();
         btnEditRow = new javax.swing.JButton();
+        txtFullName1 = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,11 +107,11 @@ public class SearchModiSO extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name ", "Category", "Price", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
+                "OrderID", "Date and Time", "ItemID", "Quantity", "Total Price", "Customer/Organization name", "Staff ID", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -89,7 +125,6 @@ public class SearchModiSO extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable);
 
-        txtSearchBar.setText("jTextField1");
         txtSearchBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSearchBarActionPerformed(evt);
@@ -137,10 +172,32 @@ public class SearchModiSO extends javax.swing.JFrame {
             }
         });
 
+        txtFullName1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFullName1ActionPerformed(evt);
+            }
+        });
+
+        btnBack.setText("Return to officer menu");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(293, 293, 293))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnEditRow)
+                        .addGap(333, 333, 333))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -153,25 +210,25 @@ public class SearchModiSO extends javax.swing.JFrame {
                                 .addComponent(btnSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnViewAll))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(btnEditRow)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(85, 85, 85)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtFullName1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch)
@@ -182,18 +239,22 @@ public class SearchModiSO extends javax.swing.JFrame {
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(txtFullName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(btnEditRow)
-                .addGap(37, 37, 37))
+                .addGap(18, 18, 18)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
-        saleso.viewAll();
+       viewAll();
     }//GEN-LAST:event_btnViewAllActionPerformed
 
     private void txtSearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchBarActionPerformed
@@ -205,7 +266,7 @@ public class SearchModiSO extends javax.swing.JFrame {
     int orderID;
         try {
             orderID = Integer.parseInt(txtSearchBar.getText());
-            saleso.search(orderID);
+            search(orderID);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please enter a valid order ID.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -225,13 +286,24 @@ public class SearchModiSO extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFullNameActionPerformed
 
     private void btnEditRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditRowActionPerformed
-    
+        
     }//GEN-LAST:event_btnEditRowActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
         int orderID = Integer.parseInt(model.getValueAt(jTable.getSelectedRow(), 0).toString());
         saleso.getOrderID(orderID);
     }//GEN-LAST:event_jTableMouseClicked
+
+    private void txtFullName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullName1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFullName1ActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        OfficerHome menu = new OfficerHome ();
+        menu.show();  // display dashboard
+        dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,6 +342,7 @@ public class SearchModiSO extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEditRow;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnViewAll;
@@ -277,6 +350,7 @@ public class SearchModiSO extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtFullName1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtSearchBar;
     private javax.swing.JTextField txtUsername;

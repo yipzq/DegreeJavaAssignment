@@ -5,12 +5,13 @@
 package javaassignment;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,11 +26,25 @@ public class Officer {
     DefaultTableModel model;
     protected String [] sales;
     
+    public void readASOFile(){
+        detailsList.clear();
+        try  {
+            BufferedReader br = new BufferedReader(new FileReader("ApprovedSO.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] details = line.split(",");
+                detailsList.add(details);
+            }
+            br.close();
+        } catch (IOException e) {
+            
+        }
+    }
     
     public void readFile(){
         detailsList.clear();
         try  {
-            BufferedReader br = new BufferedReader(new FileReader("ApproveSO.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("salesOrder.txt"));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] details = line.split(",");
@@ -62,11 +77,22 @@ public class Officer {
         outputFile.close();
     }
     
+    public void appendToFile(String fileName, List<String> newData) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            // Join the elements in newData into a single comma-separated string
+            String line = String.join(",", newData);
+
+            // Append the new line to the file
+            writer.write(line);
+            writer.newLine();  // Add a new line after each entry
+        }
+    }
+    
 
     public void edit(){
         for (String[] details : detailsList){
             if (Integer.parseInt(details[0]) == orderID){
-                details[7] = "approved";
+                details[7] = "Approved";
             }    
         }       
     }
@@ -74,44 +100,14 @@ public class Officer {
     public void reject(){
         for (String[] details : detailsList){
             if (Integer.parseInt(details[0]) == orderID){
-                details[7] = "rejected";
+                details[7] = "Rejected";
             }    
         }       
     }
     
-    
-    public void search(int orderID) {
-        boolean found = false;
-        model.setRowCount(0);
-        results = 0;
-
-        for (String[] s : detailsList) {
-            // Assuming orderID is stored as an integer in the details array
-            if (Integer.parseInt(s[0]) == orderID) {
-                sales = s;
-                model.insertRow(model.getRowCount(), new Object[]{sales[0], sales[1], sales[2], sales[3]});
-                found = true;
-                results++;
-                break;
-            }
-        }
-
-        if (!found) {
-            JOptionPane.showMessageDialog(null, "Order ID not found.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    public void viewAll() {
-        model.setRowCount(0);
-
-        for (String[] details : detailsList) {
-            if (details != null && details.length == 5) {
-                model.insertRow(model.getRowCount(), new Object[]{details[0], details[1], details[2], details[3], details[4]});
-            }
-        }
-    }
-
+   
 }
+
 
 
     
