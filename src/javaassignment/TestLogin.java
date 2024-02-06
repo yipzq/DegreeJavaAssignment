@@ -126,8 +126,8 @@ public class TestLogin extends javax.swing.JFrame {
                 AdminHome a = new AdminHome();
                 a.setVisible(true);
             } else if (obj1.getUserType().equals("Salesperson")){
-                //SalespersonHome a = new SalespersonHome();
-                //a.setVisible(true);
+                SalespersonHome a = new SalespersonHome();
+                a.setVisible(true);
             } else if (obj1.getUserType().equals("Officer")){
                 //OfficerHome a = new OfficerHome();
                 //a.setVisible(true);
