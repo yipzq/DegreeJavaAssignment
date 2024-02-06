@@ -107,7 +107,7 @@ public class Salesperson extends Staff {
             e.printStackTrace();
         }
         String orderCreated = getCurrentDateTime();
-        outputFile.println(orderID + "," + orderCreated + "," + itemID + "," + quantity + "," + total + "," + payer + "," + staffID + ",pending");
+        outputFile.println(orderID + "," + orderCreated + "," + itemID + "," + quantity + "," + total + "," + payer + "," + staffID + ",Pending");
         outputFile.close();
     }
 }
