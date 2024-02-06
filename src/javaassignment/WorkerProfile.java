@@ -22,6 +22,7 @@ public class WorkerProfile extends javax.swing.JFrame {
     DefaultTableModel model;
     Staff obj1 = new Staff();
     Admin obj2 = new Admin();
+    DataValidation obj3 = new DataValidation();
     ArrayList<String[]> detailsList = new ArrayList<>();
     /**
      * Creates new form WorkerProfile
@@ -97,6 +98,12 @@ public class WorkerProfile extends javax.swing.JFrame {
             table.getColumnModel().getColumn(2).setMinWidth(0);
             table.getColumnModel().getColumn(2).setMaxWidth(0);
         }
+
+        txtFullName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFullNameActionPerformed(evt);
+            }
+        });
 
         txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,14 +320,26 @@ public class WorkerProfile extends javax.swing.JFrame {
         }
         phoneNumber = txtPhoneNumber.getText();
         position = String.valueOf(cmbPosition.getSelectedItem());
-        try {
-            obj2.getNewStaffID();
-            obj2.createAccount(username, password, name, gender, phoneNumber, position);
-        } catch (IOException ex) {
-            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+        if (!obj1.usernameExists(username)){
+            if (obj3.betweenCharacterLimit(5, 12, username)){
+                if (obj3.betweenCharacterLimit(8, 15, password)){
+                    if (!obj3.containsNumber(name)){
+                        if (obj3.containsOnlyNumbers(phoneNumber)){
+                            try {
+                                obj2.getNewStaffID();
+                                obj2.createAccount(username, password, name, gender, phoneNumber, position);
+                            } catch (IOException ex) {
+                                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            displayWorkerDetails();
+                            JOptionPane.showMessageDialog(null,"New account created.","Success",JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            //
+                        }
+                    }
+                }
+            }
         }
-        displayWorkerDetails();
-        JOptionPane.showMessageDialog(null,"New account created.","Success",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
     private void btnClearFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFormActionPerformed
@@ -353,6 +372,10 @@ public class WorkerProfile extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnDeleteAccountActionPerformed
+
+    private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFullNameActionPerformed
 
     /**
      * @param args the command line arguments

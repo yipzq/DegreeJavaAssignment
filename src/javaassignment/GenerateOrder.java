@@ -59,6 +59,8 @@ public class GenerateOrder extends javax.swing.JFrame {
         txtQuantity = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
         btnGenerateOrder = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtPayer = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +116,26 @@ public class GenerateOrder extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("Billed to:");
+
+        txtPayer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPayerActionPerformed(evt);
+            }
+        });
+        txtPayer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPayerKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPayerKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPayerKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,12 +148,18 @@ public class GenerateOrder extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addGap(45, 45, 45)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPayer, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(43, 43, 43)
+                                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(351, 351, 351)
                         .addComponent(btnGenerateOrder)))
@@ -142,15 +170,19 @@ public class GenerateOrder extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtPayer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(btnGenerateOrder)
                 .addGap(23, 23, 23))
         );
@@ -167,10 +199,11 @@ public class GenerateOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalActionPerformed
 
     private void btnGenerateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateOrderActionPerformed
+        String payer = txtPayer.getText();
         try {
             // TODO add your handling code here:
             obj1.getStaffID();
-            obj1.generateOrder(itemID, quantity, total);
+            obj1.generateOrder(itemID, quantity, total, payer);
         } catch (IOException ex) {
             Logger.getLogger(GenerateOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -206,6 +239,22 @@ public class GenerateOrder extends javax.swing.JFrame {
             txtTotal.setText("0");
         }
     }//GEN-LAST:event_txtQuantityKeyReleased
+
+    private void txtPayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPayerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPayerActionPerformed
+
+    private void txtPayerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPayerKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPayerKeyPressed
+
+    private void txtPayerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPayerKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPayerKeyReleased
+
+    private void txtPayerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPayerKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPayerKeyTyped
 
     /**
      * @param args the command line arguments
@@ -246,8 +295,10 @@ public class GenerateOrder extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerateOrder;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
+    private javax.swing.JTextField txtPayer;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
