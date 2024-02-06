@@ -155,13 +155,4 @@ public class Staff {
     public Boolean checkOldPassword(String oldPassword){
         return oldPassword.equals(verifiedUserDetails[2]);
     }
-    
-    public Boolean usernameExists(String input){
-        for (var details : detailsList){
-            if (input.equals(details[1])){
-                return true;
-            }
-        }
-        return false;
-    }
 }
