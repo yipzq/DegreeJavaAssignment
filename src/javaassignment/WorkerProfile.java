@@ -334,7 +334,7 @@ public class WorkerProfile extends javax.swing.JFrame {
                             displayWorkerDetails();
                             JOptionPane.showMessageDialog(null,"New account created.","Success",JOptionPane.INFORMATION_MESSAGE);
                         } else {
-                            //
+                            
                         }
                     }
                 }
