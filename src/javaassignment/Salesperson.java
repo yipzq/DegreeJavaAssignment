@@ -89,7 +89,7 @@ public class Salesperson extends Staff {
         return arrayList;
     }
     
-    public void generateOrder(int itemID, int quantity, double total) throws IOException{
+    public void generateOrder(int itemID, int quantity, double total, String payer) throws IOException{
         FileWriter fw = new FileWriter("salesOrder.txt", true);
         PrintWriter outputFile = new PrintWriter(fw);
         int orderID = 0;
@@ -107,7 +107,7 @@ public class Salesperson extends Staff {
             e.printStackTrace();
         }
         String orderCreated = getCurrentDateTime();
-        outputFile.println(orderID + "," + orderCreated + "," + itemID + "," + quantity + "," + total + "," + staffID + ",pending");
+        outputFile.println(orderID + "," + orderCreated + "," + itemID + "," + quantity + "," + total + "," + payer + "," + staffID + ",pending");
         outputFile.close();
     }
 }
