@@ -30,6 +30,14 @@ public class DataValidation {
         return input.matches(regex);
     }
     
+    public Boolean containsSymbol(String input){
+        // Regular expression to match any character that is not a letter or a digit
+        String regex = ".*[^a-zA-Z0-9].*";
+
+        // Check if the input string matches the regular expression
+        return input.matches(regex);
+    }
+    
     public Boolean betweenCharacterLimit(int min, int max, String input){
         return min <= input.length() && input.length() <= max;
     }

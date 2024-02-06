@@ -19,6 +19,7 @@ public class GenerateOrder extends javax.swing.JFrame {
 
     DefaultTableModel model;
     Salesperson obj1 = new Salesperson();
+    DataValidation obj2 = new DataValidation();
     ArrayList<String[]> arrayList = new ArrayList<>();
     int itemID, quantity;
     double price = 0, total;
@@ -200,14 +201,27 @@ public class GenerateOrder extends javax.swing.JFrame {
 
     private void btnGenerateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateOrderActionPerformed
         String payer = txtPayer.getText();
-        try {
-            // TODO add your handling code here:
-            obj1.getStaffID();
-            obj1.generateOrder(itemID, quantity, total, payer);
-        } catch (IOException ex) {
-            Logger.getLogger(GenerateOrder.class.getName()).log(Level.SEVERE, null, ex);
+        if (table.getSelectedRowCount() < 1){
+            JOptionPane.showMessageDialog(null, "No row selected.","Error",JOptionPane.ERROR_MESSAGE);
+        } else if (table.getSelectedRowCount() > 1){
+            JOptionPane.showMessageDialog(null, "More than one row selected.","Error",JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (!payer.isBlank()){
+                if (quantity > 0){
+                    try {
+                        obj1.getStaffID();
+                        obj1.generateOrder(itemID, quantity, total, payer);
+                    } catch (IOException ex) {
+                        Logger.getLogger(GenerateOrder.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    JOptionPane.showMessageDialog(null,"Order generated successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Quantity must be larger than 0.","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter name of the payer.","Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
-        JOptionPane.showMessageDialog(null,"Order generated successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnGenerateOrderActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
