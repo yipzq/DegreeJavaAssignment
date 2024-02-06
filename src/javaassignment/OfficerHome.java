@@ -83,15 +83,15 @@ public class OfficerHome extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(100, 100, 100)
                 .addComponent(btnApprove)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(btnsearchModi)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(CheckSalesbtn)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(invoicebtn)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
