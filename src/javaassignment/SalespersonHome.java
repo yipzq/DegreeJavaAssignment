@@ -123,7 +123,7 @@ public class SalespersonHome extends javax.swing.JFrame {
 
     private void btnManageFurnitureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageFurnitureActionPerformed
         // TODO add your handling code here:
-        Manage_SalesOrder a = new Manage_SalesOrder();
+        Manage_Furniture a = new Manage_Furniture();
         a.setVisible(true);
     }//GEN-LAST:event_btnManageFurnitureActionPerformed
 

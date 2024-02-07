@@ -118,6 +118,11 @@ public class WorkerProfile extends javax.swing.JFrame {
         rbFemale.setText("Female");
 
         cmbPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--None--", "Officer", "Admin", "Salesperson" }));
+        cmbPosition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPositionActionPerformed(evt);
+            }
+        });
 
         btnEditRow.setText("Edit Row");
         btnEditRow.addActionListener(new java.awt.event.ActionListener() {
@@ -419,6 +424,10 @@ public class WorkerProfile extends javax.swing.JFrame {
     private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFullNameActionPerformed
+
+    private void cmbPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPositionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPositionActionPerformed
 
     /**
      * @param args the command line arguments

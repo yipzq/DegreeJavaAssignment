@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,11 +19,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Officer {
     
-    protected int orderID;
-    protected int results;
+    protected int orderID ,results;
     protected ArrayList<String[]> detailsList = new ArrayList<>();
-    DefaultTableModel model;
-    protected String [] sales;
+    protected String userType;
+    protected String [] sales, verifiedUserDetails;
+//
     
     public void readASOFile(){
         detailsList.clear();
@@ -105,6 +104,21 @@ public class Officer {
         }       
     }
     
+    public String[] getVerifiedUserDetails(){
+        for (var details : detailsList){
+            if (orderID == Integer.parseInt(details[0])){
+                verifiedUserDetails = details;
+                userType = verifiedUserDetails[7];
+                return verifiedUserDetails;
+            }
+        }
+        return null;
+    }
+    
+    public void changeDetails(String value, int index){
+        verifiedUserDetails[index] = value;
+        detailsList.set(orderID - 1, verifiedUserDetails);
+    }
    
 }
 

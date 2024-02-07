@@ -6,36 +6,48 @@ package javaassignment;
 
 import java.io.IOException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.util.logging.Logger;
+
 
 /**
  *
- * @author yipzh
+ * @author mcsee
  */
-public class PersonalProfile extends javax.swing.JFrame {
+public class ManagePersonal_Officer extends javax.swing.JFrame {
 
     String[] profileDetails;
     Staff obj1 = new Staff();
-    DataValidation obj2 = new DataValidation();
-    /**
-     * Creates new form PersonalProfile
-     */
-    public PersonalProfile() {
+    
+    public ManagePersonal_Officer() {
         initComponents();
         getPersonalProfileDetails();
         initValues();
     }
     
-    private void getPersonalProfileDetails(){
-        obj1.readFile();
-        try {
-            obj1.getStaffID();
-        } catch (IOException ex) {
-            Logger.getLogger(PersonalProfile.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    // need help 
+    private void getPersonalProfileDetails() {
+    obj1.readFile();
+    try {
+        obj1.getStaffID();
+        
+        // Assuming getVerifiedUserDetails() returns an array or a list of details
         profileDetails = obj1.getVerifiedUserDetails();
+        
+        // Assuming profileDetails is an array of strings
+        if (profileDetails.length > 6 && profileDetails[6].contains("Officer")) {
+            // Display or process the profileDetails as needed
+            for (String detail : profileDetails) {
+                System.out.println(detail);
+            }
+        } else {
+            System.out.println("The text file does not contain 'Officer' at index 6.");
+        }
+    } catch (IOException ex) {
+        java.util.logging.Logger.getLogger(PersonalProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+}
+
     
     private void initValues(){
         txtName.setText(profileDetails[3]);
@@ -54,33 +66,55 @@ public class PersonalProfile extends javax.swing.JFrame {
     private void initComponents() {
 
         txtName = new javax.swing.JTextField();
-        txtOldPassword = new javax.swing.JPasswordField();
+        txtGender = new javax.swing.JTextField();
         txtPhoneNumber = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
-        txtGender = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
-        btnChangePassword = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        btnBack = new javax.swing.JButton();
+        txtOldPassword = new javax.swing.JPasswordField();
         txtNewPassword = new javax.swing.JPasswordField();
         txtConfirmNewPassword = new javax.swing.JPasswordField();
+        btnChangePassword = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         txtName.setEditable(false);
-
-        txtOldPassword.addActionListener(new java.awt.event.ActionListener() {
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOldPasswordActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
         txtGender.setEditable(false);
+        txtGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGenderActionPerformed(evt);
+            }
+        });
+
+        txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneNumberActionPerformed(evt);
+            }
+        });
+
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save Changes");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
+            }
+        });
+
+        txtOldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOldPasswordActionPerformed(evt);
             }
         });
 
@@ -103,62 +137,65 @@ public class PersonalProfile extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(143, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57))
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(260, 260, 260))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                            .addComponent(txtPhoneNumber))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
-            .addComponent(jSeparator1)
+                        .addGap(40, 40, 40))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
+                .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtConfirmNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                    .addComponent(txtNewPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtOldPassword, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtConfirmNewPassword)
+                    .addComponent(txtOldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                    .addComponent(txtNewPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnChangePassword)
-                .addGap(42, 42, 42))
+                .addGap(45, 45, 45))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(31, 31, 31)
                 .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(32, 32, 32)
                 .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave))
-                .addGap(32, 32, 32)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtOldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtOldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(txtConfirmNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtConfirmNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnChangePassword))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,40 +210,28 @@ public class PersonalProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No changes made.","Error",JOptionPane.ERROR_MESSAGE);
         }
         else {
-            if (!phoneNumber.isBlank() && !username.isBlank()){
-                if (obj2.betweenCharacterLimit(10, 11, phoneNumber)){
-                    if (obj2.betweenCharacterLimit(5, 12, username)){
-                        if (!obj1.usernameExists(username)){
-                            if (phoneNumber.equals(profileDetails[5]) && !username.equals(profileDetails[1])){
-                                obj1.changeDetails(username, 1);
-                            }
-                            else if (!phoneNumber.equals(profileDetails[5]) && username.equals(profileDetails[1])){
-                                obj1.changeDetails(phoneNumber, 5);
-                            }
-                            else if (!phoneNumber.equals(profileDetails[5]) && !username.equals(profileDetails[1])){
-                                obj1.changeDetails(username, 1);
-                                obj1.changeDetails(phoneNumber, 5);
-                            }
-                            try {
-                                obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
-                            } catch (IOException ex) {
-                                Logger.getLogger(PersonalProfile.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            JOptionPane.showMessageDialog(null,"Profile details changed successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Username already exists.","Error",JOptionPane.ERROR_MESSAGE);
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Username should be between 5 to 12 characters.","Error",JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Phone number should be between 10 to 11 digits.","Error",JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Fields cannot be left empty.","Error",JOptionPane.ERROR_MESSAGE);
+            if (phoneNumber.equals(profileDetails[5]) && !username.equals(profileDetails[1])){
+                obj1.changeDetails(username, 1);
             }
+            else if (!phoneNumber.equals(profileDetails[5]) && username.equals(profileDetails[1])){
+                obj1.changeDetails(phoneNumber, 5);
+            }
+            else if (!phoneNumber.equals(profileDetails[5]) && !username.equals(profileDetails[1])){
+                obj1.changeDetails(username, 1);
+                obj1.changeDetails(phoneNumber, 5);
+            }
+            try {
+                obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
+            } catch (IOException ex) {
+                Logger.getLogger(ManagePersonal_Officer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null,"Profile details changed successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtOldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOldPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOldPasswordActionPerformed
 
     private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
         // TODO add your handling code here:
@@ -215,20 +240,16 @@ public class PersonalProfile extends javax.swing.JFrame {
         String confirmNewPassword = String.valueOf(txtConfirmNewPassword.getPassword());
         if (obj1.checkOldPassword(oldPassword)){
             if (newPassword.equals(confirmNewPassword)){
-                if (obj2.betweenCharacterLimit(8, 15, newPassword)){
-                    obj1.changeDetails(newPassword, 2);
-                    try {
-                        obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
-                    } catch (IOException ex) {
-                        Logger.getLogger(PersonalProfile.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    JOptionPane.showMessageDialog(null,"Password changed successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
-                    txtOldPassword.setText("");
-                    txtNewPassword.setText("");
-                    txtConfirmNewPassword.setText("");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Password should be between 8 to 15 characters.","Error",JOptionPane.ERROR_MESSAGE);
+                obj1.changeDetails(newPassword, 2);
+                try {
+                    obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManagePersonal_Officer.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                JOptionPane.showMessageDialog(null,"Password changed successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                txtOldPassword.setText("");
+                txtNewPassword.setText("");
+                txtConfirmNewPassword.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "New password does not match.","Error",JOptionPane.ERROR_MESSAGE);
             }
@@ -238,15 +259,25 @@ public class PersonalProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        AdminHome a = new AdminHome();
-        a.setVisible(true);
-        this.setVisible(false);
+        new OfficerHome().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtOldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOldPasswordActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtOldPasswordActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGenderActionPerformed
+
+    private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneNumberActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,20 +296,20 @@ public class PersonalProfile extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PersonalProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePersonal_Officer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PersonalProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePersonal_Officer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PersonalProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePersonal_Officer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PersonalProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePersonal_Officer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PersonalProfile().setVisible(true);
+                new ManagePersonal_Officer().setVisible(true);
             }
         });
     }
