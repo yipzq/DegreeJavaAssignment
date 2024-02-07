@@ -283,30 +283,57 @@ public class WorkerProfile extends javax.swing.JFrame {
             }
             phoneNumber = txtPhoneNumber.getText();
             position = String.valueOf(cmbPosition.getSelectedItem());
-            String[] details = {String.valueOf(staffID), username, password, name, gender, phoneNumber, position};
-            
-            obj2.setStaffID(staffID);
-            obj2.getVerifiedUserDetails();
-            int count = 0;
-            for (var detail : details){
-                obj2.changeDetails(detail, count);
-                count ++;
-            }
-            try {
-                obj2.overwriteFile("staffDetails.txt", obj2.getDetailsList(), 7);
-            } catch (IOException ex) {
-                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            if (!name.isBlank() && !gender.isBlank() && !phoneNumber.isBlank() && !position.equals("--None--")){
+                if (!obj2.usernameExists(username)){
+                    if (obj3.betweenCharacterLimit(5, 12, username)){
+                        if (obj3.betweenCharacterLimit(8, 15, password)){
+                            if (obj3.betweenCharacterLimit(10, 11, phoneNumber)){
+                                if (!obj3.containsNumber(name) && !obj3.containsSymbol(name)){
+                                    if (obj3.containsOnlyNumbers(phoneNumber)){
+                                        String[] details = {String.valueOf(staffID), username, password, name, gender, phoneNumber, position};
+                                        obj2.setStaffID(staffID);
+                                        obj2.getVerifiedUserDetails();
+                                        int count = 0;
+                                        for (var detail : details){
+                                            obj2.changeDetails(detail, count);
+                                            count ++;
+                                        }
+                                        try {
+                                            obj2.overwriteFile("staffDetails.txt", obj2.getDetailsList(), 7);
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
 
-            displayWorkerDetails();
-            //table.setValueAt(username, table.getSelectedRow(), 1);
-            //table.setValueAt(password, table.getSelectedRow(), 2);
-            //table.setValueAt(name, table.getSelectedRow(), 3);
-            //table.setValueAt(gender, table.getSelectedRow(), 4);
-            //table.setValueAt(phoneNumber, table.getSelectedRow(), 5);
-            //table.setValueAt(position, table.getSelectedRow(), 6);
-            
-            JOptionPane.showMessageDialog(null,"Row edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                                        displayWorkerDetails();
+                                        //table.setValueAt(username, table.getSelectedRow(), 1);
+                                        //table.setValueAt(password, table.getSelectedRow(), 2);
+                                        //table.setValueAt(name, table.getSelectedRow(), 3);
+                                        //table.setValueAt(gender, table.getSelectedRow(), 4);
+                                        //table.setValueAt(phoneNumber, table.getSelectedRow(), 5);
+                                        //table.setValueAt(position, table.getSelectedRow(), 6);
+
+                                        JOptionPane.showMessageDialog(null,"Row edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Phone number should only consist of digits(0-9).","Error",JOptionPane.ERROR_MESSAGE);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Name should not consist of numbers or symbols.","Error",JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Phone number should be between 10 to 11 digits.","Error",JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Password should be between 8 to 15 characters.","Error",JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Username should be between 5 to 12 characters.","Error",JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Username already exists.","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Fields cannot be left empty.","Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnEditRowActionPerformed
 
@@ -325,25 +352,41 @@ public class WorkerProfile extends javax.swing.JFrame {
         }
         phoneNumber = txtPhoneNumber.getText();
         position = String.valueOf(cmbPosition.getSelectedItem());
-        if (!obj1.usernameExists(username)){
-            if (obj3.betweenCharacterLimit(5, 12, username)){
-                if (obj3.betweenCharacterLimit(8, 15, password)){
-                    if (!obj3.containsNumber(name)){
-                        if (obj3.containsOnlyNumbers(phoneNumber)){
-                            try {
-                                obj2.getNewStaffID();
-                                obj2.createAccount(username, password, name, gender, phoneNumber, position);
-                            } catch (IOException ex) {
-                                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+        if (!name.isBlank() && !gender.isBlank() && !phoneNumber.isBlank() && !position.equals("--None--")){
+            if (!obj2.usernameExists(username)){
+                if (obj3.betweenCharacterLimit(5, 12, username)){
+                    if (obj3.betweenCharacterLimit(8, 15, password)){
+                        if (obj3.betweenCharacterLimit(10, 11, phoneNumber)){
+                            if (!obj3.containsNumber(name) && !obj3.containsSymbol(name)){
+                                if (obj3.containsOnlyNumbers(phoneNumber)){
+                                    try {
+                                        obj2.getNewStaffID();
+                                        obj2.createAccount(username, password, name, gender, phoneNumber, position);
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    displayWorkerDetails();
+                                    JOptionPane.showMessageDialog(null,"New account created.","Success",JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Phone number should only consist of digits(0-9).","Error",JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Name should not consist of numbers or symbols.","Error",JOptionPane.ERROR_MESSAGE);
                             }
-                            displayWorkerDetails();
-                            JOptionPane.showMessageDialog(null,"New account created.","Success",JOptionPane.INFORMATION_MESSAGE);
                         } else {
-                            //
+                            JOptionPane.showMessageDialog(null, "Phone number should be between 10 to 11 digits.","Error",JOptionPane.ERROR_MESSAGE);
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Password should be between 8 to 15 characters.","Error",JOptionPane.ERROR_MESSAGE);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Username should be between 5 to 12 characters.","Error",JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Username already exists.","Error",JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fields cannot be left empty.","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 

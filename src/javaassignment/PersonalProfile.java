@@ -17,6 +17,7 @@ public class PersonalProfile extends javax.swing.JFrame {
 
     String[] profileDetails;
     Staff obj1 = new Staff();
+    DataValidation obj2 = new DataValidation();
     /**
      * Creates new form PersonalProfile
      */
@@ -172,22 +173,38 @@ public class PersonalProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No changes made.","Error",JOptionPane.ERROR_MESSAGE);
         }
         else {
-            if (phoneNumber.equals(profileDetails[5]) && !username.equals(profileDetails[1])){
-                obj1.changeDetails(username, 1);
+            if (!phoneNumber.isBlank() && !username.isBlank()){
+                if (obj2.betweenCharacterLimit(10, 11, phoneNumber)){
+                    if (obj2.betweenCharacterLimit(5, 12, username)){
+                        if (!obj1.usernameExists(username)){
+                            if (phoneNumber.equals(profileDetails[5]) && !username.equals(profileDetails[1])){
+                                obj1.changeDetails(username, 1);
+                            }
+                            else if (!phoneNumber.equals(profileDetails[5]) && username.equals(profileDetails[1])){
+                                obj1.changeDetails(phoneNumber, 5);
+                            }
+                            else if (!phoneNumber.equals(profileDetails[5]) && !username.equals(profileDetails[1])){
+                                obj1.changeDetails(username, 1);
+                                obj1.changeDetails(phoneNumber, 5);
+                            }
+                            try {
+                                obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
+                            } catch (IOException ex) {
+                                Logger.getLogger(PersonalProfile.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            JOptionPane.showMessageDialog(null,"Profile details changed successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Username already exists.","Error",JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Username should be between 5 to 12 characters.","Error",JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Phone number should be between 10 to 11 digits.","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Fields cannot be left empty.","Error",JOptionPane.ERROR_MESSAGE);
             }
-            else if (!phoneNumber.equals(profileDetails[5]) && username.equals(profileDetails[1])){
-                obj1.changeDetails(phoneNumber, 5);
-            }
-            else if (!phoneNumber.equals(profileDetails[5]) && !username.equals(profileDetails[1])){
-                obj1.changeDetails(username, 1);
-                obj1.changeDetails(phoneNumber, 5);
-            }
-            try {
-                obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
-            } catch (IOException ex) {
-                Logger.getLogger(PersonalProfile.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            JOptionPane.showMessageDialog(null,"Profile details changed successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -198,16 +215,20 @@ public class PersonalProfile extends javax.swing.JFrame {
         String confirmNewPassword = String.valueOf(txtConfirmNewPassword.getPassword());
         if (obj1.checkOldPassword(oldPassword)){
             if (newPassword.equals(confirmNewPassword)){
-                obj1.changeDetails(newPassword, 2);
-                try {
-                    obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
-                } catch (IOException ex) {
-                    Logger.getLogger(PersonalProfile.class.getName()).log(Level.SEVERE, null, ex);
+                if (obj2.betweenCharacterLimit(8, 15, newPassword)){
+                    obj1.changeDetails(newPassword, 2);
+                    try {
+                        obj1.overwriteFile("staffDetails.txt", obj1.getDetailsList(), 7);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PersonalProfile.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    JOptionPane.showMessageDialog(null,"Password changed successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                    txtOldPassword.setText("");
+                    txtNewPassword.setText("");
+                    txtConfirmNewPassword.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Password should be between 8 to 15 characters.","Error",JOptionPane.ERROR_MESSAGE);
                 }
-                JOptionPane.showMessageDialog(null,"Password changed successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
-                txtOldPassword.setText("");
-                txtNewPassword.setText("");
-                txtConfirmNewPassword.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "New password does not match.","Error",JOptionPane.ERROR_MESSAGE);
             }
