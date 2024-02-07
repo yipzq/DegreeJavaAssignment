@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Joshua
  */
-public class Manage_SalesOrder extends javax.swing.JFrame {
+public class Manage_Furniture extends javax.swing.JFrame {
 
     File f = new File("furniture.txt");
     String oldString, newString;
@@ -28,7 +28,7 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
     /**
      * Creates new form Manage_SalesOrder
      */
-    public Manage_SalesOrder() {
+    public Manage_Furniture() {
         initComponents(); 
         try {
             FileReader fr = new FileReader(f);
@@ -42,7 +42,7 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
                 model.addRow(dataRow);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Manage_SalesOrder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Manage_Furniture.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -349,7 +349,7 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
         try {
             idNumber = obj1.getNewID("furniture.txt");
         } catch (IOException ex) {
-            Logger.getLogger(Manage_SalesOrder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Manage_Furniture.class.getName()).log(Level.SEVERE, null, ex);
         }
         furnitureName = tfFurnitureName.getText();
         category = cbCategory.getSelectedItem().toString();
@@ -435,20 +435,21 @@ public class Manage_SalesOrder extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Manage_SalesOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Manage_Furniture.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Manage_SalesOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Manage_Furniture.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Manage_SalesOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Manage_Furniture.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Manage_SalesOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Manage_Furniture.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Manage_SalesOrder().setVisible(true);
+                new Manage_Furniture().setVisible(true);
             }
         });
     }

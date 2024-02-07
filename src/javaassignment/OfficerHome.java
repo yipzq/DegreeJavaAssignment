@@ -32,6 +32,7 @@ public class OfficerHome extends javax.swing.JFrame {
         btnsearchModi = new javax.swing.JButton();
         CheckSalesbtn = new javax.swing.JButton();
         invoicebtn = new javax.swing.JButton();
+        invoicebtn1 = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -67,6 +68,13 @@ public class OfficerHome extends javax.swing.JFrame {
             }
         });
 
+        invoicebtn1.setText("Manage personal profile");
+        invoicebtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invoicebtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,24 +82,27 @@ public class OfficerHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnsearchModi, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnsearchModi, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(CheckSalesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(invoicebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(invoicebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(invoicebtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(btnApprove)
+                .addGap(51, 51, 51)
+                .addComponent(invoicebtn1)
+                .addGap(18, 18, 18)
+                .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnsearchModi)
                 .addGap(18, 18, 18)
                 .addComponent(CheckSalesbtn)
                 .addGap(18, 18, 18)
                 .addComponent(invoicebtn)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -120,6 +131,11 @@ public class OfficerHome extends javax.swing.JFrame {
         new GenerateInvoice().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_invoicebtnActionPerformed
+
+    private void invoicebtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoicebtn1ActionPerformed
+        new ManagePersonal_Officer().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_invoicebtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,6 +177,7 @@ public class OfficerHome extends javax.swing.JFrame {
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnsearchModi;
     private javax.swing.JButton invoicebtn;
+    private javax.swing.JButton invoicebtn1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
