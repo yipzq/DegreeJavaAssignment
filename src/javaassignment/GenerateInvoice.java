@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GenerateInvoice extends javax.swing.JFrame {
     DefaultTableModel model;
-    File f = new File("ssales.txt");
+    File f = new File("ApprovedSO.txt");
 
     /**
      * Creates new form GenerateInvoice
@@ -56,20 +56,20 @@ public class GenerateInvoice extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         invoicetable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        orderID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        dateTime = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         Return = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        itemID = new javax.swing.JTextField();
+        quantity = new javax.swing.JTextField();
+        totalPrice = new javax.swing.JTextField();
+        customerName = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        staffID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +81,7 @@ public class GenerateInvoice extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+                "OrderID", "Date & Time", "ItemID", "Quanity", "Total Price", "Customer/Organization name", "StaffID"
             }
         ));
         invoicetable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,21 +91,17 @@ public class GenerateInvoice extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(invoicetable);
 
-        jLabel2.setText("Name");
+        jLabel2.setText("OrderID");
 
-        jTextField1.setText("jTextField1");
+        jLabel3.setText("Date & Time");
 
-        jLabel3.setText("jLabel2");
+        jLabel4.setText("ItemID");
 
-        jTextField2.setText("jTextField2");
+        jLabel5.setText("Quantity");
 
-        jLabel4.setText("jLabel4");
+        jLabel6.setText("Total Price");
 
-        jLabel5.setText("jLabel4");
-
-        jLabel6.setText("jLabel5");
-
-        jLabel7.setText("jLabel6");
+        jLabel7.setText("Customer/Organization name");
 
         Return.setText("Return");
         Return.addActionListener(new java.awt.event.ActionListener() {
@@ -114,31 +110,12 @@ public class GenerateInvoice extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
-        jLabel8.setText("jLabel7");
-
-        jTextField7.setText("jTextField7");
+        jLabel8.setText("StaffID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addComponent(jLabel1)))
-                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -151,16 +128,26 @@ public class GenerateInvoice extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7))
+                    .addComponent(staffID, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(customerName, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(totalPrice, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(quantity, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(itemID, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(dateTime, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(orderID, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Return)
                 .addGap(80, 80, 80))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(293, 293, 293)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,33 +163,33 @@ public class GenerateInvoice extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(231, 231, 231)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(orderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(itemID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(staffID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(Return)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -222,13 +209,13 @@ public class GenerateInvoice extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel)invoicetable.getModel();
         int selectedRowIndex = invoicetable.getSelectedRow();
         
-        jTextField1.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        jTextField2.setText(model.getValueAt(selectedRowIndex, 1).toString());
-        jTextField3.setText(model.getValueAt(selectedRowIndex, 2).toString());
-        jTextField4.setText(model.getValueAt(selectedRowIndex, 3).toString());
-        jTextField5.setText(model.getValueAt(selectedRowIndex, 4).toString());
-        jTextField6.setText(model.getValueAt(selectedRowIndex, 5).toString());
-        jTextField7.setText(model.getValueAt(selectedRowIndex, 6).toString());
+        orderID.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        dateTime.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        itemID.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        quantity.setText(model.getValueAt(selectedRowIndex, 3).toString());
+        totalPrice.setText(model.getValueAt(selectedRowIndex, 4).toString());
+        customerName.setText(model.getValueAt(selectedRowIndex, 5).toString());
+        staffID.setText(model.getValueAt(selectedRowIndex, 6).toString());
     }//GEN-LAST:event_invoicetableMouseClicked
 
     /**
@@ -268,7 +255,10 @@ public class GenerateInvoice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Return;
+    private javax.swing.JTextField customerName;
+    private javax.swing.JTextField dateTime;
     private javax.swing.JTable invoicetable;
+    private javax.swing.JTextField itemID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -278,12 +268,9 @@ public class GenerateInvoice extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField orderID;
+    private javax.swing.JTextField quantity;
+    private javax.swing.JTextField staffID;
+    private javax.swing.JTextField totalPrice;
     // End of variables declaration//GEN-END:variables
 }

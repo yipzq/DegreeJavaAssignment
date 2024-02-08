@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CheckSaleOrder extends javax.swing.JFrame {
     DefaultTableModel model;
-    File f = new File("Sales.txt");
+    File f = new File("ApprovedSO.txt");
     
 
     /**
@@ -75,7 +75,7 @@ public class CheckSaleOrder extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+                "OrderID", "Date & Time", "ItemID", "Quantity", "Total Price", "Customer/ Organization name", "StaffID", "Status"
             }
         ));
         jScrollPane1.setViewportView(SalesTable);
