@@ -312,26 +312,32 @@ public class ManageSalesOrder extends javax.swing.JFrame {
             furniture = cmbFurniture.getSelectedItem().toString();
             quantity = txtQuantity.getText();
             client = txtClient.getText();
+            String status = model.getValueAt(table.getSelectedRow(), 7).toString();
             
-            if (!furniture.equals("None") && !client.isBlank()){
-                if(obj2.containsOnlyNumbers(quantity)){
-                    if (Integer.parseInt(quantity) > 0){
-                        obj1.setOrderID(orderID);
-                        obj1.modifyOrder(furnitureID, quantity, client, price);
-                        try {
-                            obj1.overwriteFile("salesOrder.txt",obj1.getOrderList(),8);
-                        } catch (IOException ex) {
-                            Logger.getLogger(ManageSalesOrder.class.getName()).log(Level.SEVERE, null, ex);
+            if (status.equals("pending") || status.equals("Pending")){
+                if (!furniture.equals("None") && !client.isBlank()){
+                    if(obj2.containsOnlyNumbers(quantity)){
+                        if (Integer.parseInt(quantity) > 0){
+                            obj1.setOrderID(orderID);
+                            obj1.modifyOrder(furnitureID, quantity, client, price);
+                            try {
+                                obj1.overwriteFile("salesOrder.txt",obj1.getOrderList(),8);
+                            } catch (IOException ex) {
+                                Logger.getLogger(ManageSalesOrder.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            displayOrders();
+                            JOptionPane.showMessageDialog(null, "Order modified successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Quantity must be larger than 0.","Error",JOptionPane.ERROR_MESSAGE);
                         }
-                        displayOrders();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Quantity must be larger than 0.","Error",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Quantity field should only consist of digits(0-9).","Error",JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Quantity field should only consist of digits(0-9).","Error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Fields cannot be left empty.","Error",JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Fields cannot be left empty.","Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You are only allowed to modify orders with status 'pending'.","Error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnModifyActionPerformed
