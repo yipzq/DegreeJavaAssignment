@@ -20,7 +20,6 @@ public class WorkerProfile extends javax.swing.JFrame {
 
     int staffID;
     DefaultTableModel model;
-    Staff obj1 = new Staff();
     Admin obj2 = new Admin();
     DataValidation obj3 = new DataValidation();
     ArrayList<String[]> detailsList = new ArrayList<>();
@@ -70,6 +69,15 @@ public class WorkerProfile extends javax.swing.JFrame {
         btnCreateAccount = new javax.swing.JButton();
         btnDeleteAccount = new javax.swing.JButton();
         btnClearForm = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtConfirmPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,70 +160,118 @@ public class WorkerProfile extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setText("Worker Profile");
+
+        jLabel2.setText("Username:");
+
+        jLabel3.setText("Full Name:");
+
+        jLabel4.setText("Password:");
+
+        jLabel5.setText("Gender:");
+
+        jLabel6.setText("Phone Number:");
+
+        jLabel7.setText("Position:");
+
+        jLabel8.setText("Re-type Password:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbMale, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnClearForm)
+                                .addGap(26, 26, 26))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(25, 25, 25)
+                                        .addComponent(jLabel8)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rbMale, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnClearForm)
-                        .addGap(49, 49, 49))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(btnCreateAccount)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEditRow)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDeleteAccount)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(106, 106, 106)
+                                .addComponent(jLabel1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(btnCreateAccount)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEditRow)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteAccount)))
+                        .addContainerGap(15, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(btnBack)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClearForm))
+                    .addComponent(btnClearForm)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbMale)
-                    .addComponent(rbFemale))
+                    .addComponent(rbFemale)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditRow)
                     .addComponent(btnCreateAccount)
@@ -245,6 +301,7 @@ public class WorkerProfile extends javax.swing.JFrame {
         
         txtUsername.setText(tbUsername);
         txtPassword.setText(tbPassword);
+        txtConfirmPassword.setText(tbPassword);
         txtFullName.setText(tbFullName);
         txtPhoneNumber.setText(tbPhoneNumber);
         if (tbGender.equals("Male")){
@@ -270,9 +327,10 @@ public class WorkerProfile extends javax.swing.JFrame {
         } else if (table.getSelectedRowCount() > 1){
             JOptionPane.showMessageDialog(null, "More than one row selected.","Error",JOptionPane.ERROR_MESSAGE);
         } else {
-            String username, password, name, gender, phoneNumber, position;
+            String username, password, confirmPassword, name, gender, phoneNumber, position;
             username = txtUsername.getText();
             password = String.valueOf(txtPassword.getPassword());
+            confirmPassword = String.valueOf(txtConfirmPassword.getPassword());
             name = txtFullName.getText();
             if (rbMale.isSelected()){
                 gender = "Male";
@@ -290,29 +348,33 @@ public class WorkerProfile extends javax.swing.JFrame {
                             if (obj3.betweenCharacterLimit(10, 11, phoneNumber)){
                                 if (!obj3.containsNumber(name) && !obj3.containsSymbol(name)){
                                     if (obj3.containsOnlyNumbers(phoneNumber)){
-                                        String[] details = {String.valueOf(staffID), username, password, name, gender, phoneNumber, position};
-                                        obj2.setStaffID(staffID);
-                                        obj2.getVerifiedUserDetails();
-                                        int count = 0;
-                                        for (var detail : details){
-                                            obj2.changeDetails(detail, count);
-                                            count ++;
-                                        }
-                                        try {
-                                            obj2.overwriteFile("staffDetails.txt", obj2.getDetailsList(), 7);
-                                        } catch (IOException ex) {
-                                            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
+                                        if (password.equals(confirmPassword)){
+                                            String[] details = {String.valueOf(staffID), username, password, name, gender, phoneNumber, position};
+                                            obj2.setStaffID(staffID);
+                                            obj2.getVerifiedUserDetails();
+                                            int count = 0;
+                                            for (var detail : details){
+                                                obj2.changeDetails(detail, count);
+                                                count ++;
+                                            }
+                                            try {
+                                                obj2.overwriteFile("staffDetails.txt", obj2.getDetailsList(), 7);
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 
-                                        displayWorkerDetails();
-                                        //table.setValueAt(username, table.getSelectedRow(), 1);
-                                        //table.setValueAt(password, table.getSelectedRow(), 2);
-                                        //table.setValueAt(name, table.getSelectedRow(), 3);
-                                        //table.setValueAt(gender, table.getSelectedRow(), 4);
-                                        //table.setValueAt(phoneNumber, table.getSelectedRow(), 5);
-                                        //table.setValueAt(position, table.getSelectedRow(), 6);
+                                            displayWorkerDetails();
+                                            //table.setValueAt(username, table.getSelectedRow(), 1);
+                                            //table.setValueAt(password, table.getSelectedRow(), 2);
+                                            //table.setValueAt(name, table.getSelectedRow(), 3);
+                                            //table.setValueAt(gender, table.getSelectedRow(), 4);
+                                            //table.setValueAt(phoneNumber, table.getSelectedRow(), 5);
+                                            //table.setValueAt(position, table.getSelectedRow(), 6);
 
-                                        JOptionPane.showMessageDialog(null,"Row edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                                            JOptionPane.showMessageDialog(null,"Row edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Passwords do not match.","Error",JOptionPane.ERROR_MESSAGE);
+                                        }
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Phone number should only consist of digits(0-9).","Error",JOptionPane.ERROR_MESSAGE);
                                     }
@@ -339,9 +401,10 @@ public class WorkerProfile extends javax.swing.JFrame {
 
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         // TODO add your handling code here:
-        String username, password, name, gender, phoneNumber, position;
+        String username, password, confirmPassword, name, gender, phoneNumber, position;
         username = txtUsername.getText();
         password = String.valueOf(txtPassword.getPassword());
+        confirmPassword = String.valueOf(txtConfirmPassword.getPassword());
         name = txtFullName.getText();
         if (rbMale.isSelected()){
             gender = "Male";
@@ -359,14 +422,18 @@ public class WorkerProfile extends javax.swing.JFrame {
                         if (obj3.betweenCharacterLimit(10, 11, phoneNumber)){
                             if (!obj3.containsNumber(name) && !obj3.containsSymbol(name)){
                                 if (obj3.containsOnlyNumbers(phoneNumber)){
-                                    try {
-                                        obj2.getNewStaffID();
-                                        obj2.createAccount(username, password, name, gender, phoneNumber, position);
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                                    if (password.equals(confirmPassword)){
+                                        try {
+                                            obj2.getNewStaffID();
+                                            obj2.createAccount(username, password, name, gender, phoneNumber, position);
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                        displayWorkerDetails();
+                                        JOptionPane.showMessageDialog(null,"New account created.","Success",JOptionPane.INFORMATION_MESSAGE);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Passwords do not match.","Error",JOptionPane.ERROR_MESSAGE);
                                     }
-                                    displayWorkerDetails();
-                                    JOptionPane.showMessageDialog(null,"New account created.","Success",JOptionPane.INFORMATION_MESSAGE);
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Phone number should only consist of digits(0-9).","Error",JOptionPane.ERROR_MESSAGE);
                                 }
@@ -394,6 +461,7 @@ public class WorkerProfile extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtUsername.setText("");
         txtPassword.setText("");
+        txtConfirmPassword.setText("");
         txtFullName.setText("");
         bgGender.clearSelection();
         txtPhoneNumber.setText("");
@@ -472,10 +540,19 @@ public class WorkerProfile extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteAccount;
     private javax.swing.JButton btnEditRow;
     private javax.swing.JComboBox<String> cmbPosition;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbFemale;
     private javax.swing.JRadioButton rbMale;
     private javax.swing.JTable table;
+    private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhoneNumber;

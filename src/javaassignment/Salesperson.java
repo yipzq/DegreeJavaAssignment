@@ -17,8 +17,9 @@ import java.util.ArrayList;
  */
 public class Salesperson extends Staff {
     
-    int id;
-    ArrayList<String[]> arrayList = new ArrayList<>();
+    int id, salesOrderID;
+    String[] modifiedOrderDetails;
+    ArrayList<String[]> arrayList = new ArrayList<>(), furnitureList = new ArrayList<>(), orderList = new ArrayList<>();
     
     Salesperson(){
         
@@ -48,23 +49,23 @@ public class Salesperson extends Staff {
         outputFile.close();
     }
     
-    public void deleteAccount() throws IOException{
-        ArrayList<String[]> arrayList = new ArrayList<>();
+    public void deleteOrder() throws IOException{
+        ArrayList<String[]> aL = new ArrayList<>();
         String array[] = new String[0];
-        for (var i : detailsList){
-            if (i[0].equals(String.valueOf(staffID))){
-                arrayList.add(array);
+        for (var i : orderList){
+            if (i[0].equals(String.valueOf(salesOrderID))){
+                aL.add(array);
             } else{
-                arrayList.add(i);
+                aL.add(i);
             }
         }
-        FileWriter fw = new FileWriter("staffDetails.txt", false);
+        FileWriter fw = new FileWriter("salesOrder.txt", false);
         PrintWriter outputFile = new PrintWriter(fw);
-        for (var i : arrayList){
-            if (i.length != 7){
+        for (var i : aL){
+            if (i.length != 8){
                 outputFile.println("");
             }else{
-                outputFile.println(i[0] + "," + i[1] + "," + i[2] + "," + i[3] + "," + i[4] + "," + i[5] + "," + i[6]);
+                outputFile.println(i[0] + "," + i[1] + "," + i[2] + "," + i[3] + "," + i[4] + "," + i[5] + "," + i[6] + "," + i[7]);
             }
         }
         outputFile.close();
@@ -85,11 +86,45 @@ public class Salesperson extends Staff {
         }
     }
     
+    public void readFurnitureFile(){
+        furnitureList.clear();
+        try  {
+            BufferedReader br = new BufferedReader(new FileReader("furniture.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] array = line.split(",");
+                furnitureList.add(array);
+            }
+            br.close();
+        } catch (IOException e) {
+            
+        }
+    }
+    
+    public void readSalesOrderFile(){
+        orderList.clear();
+        try  {
+            BufferedReader br = new BufferedReader(new FileReader("salesOrder.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] array = line.split(",");
+                orderList.add(array);
+            }
+            br.close();
+        } catch (IOException e) {
+            
+        }
+    }
+    
     public ArrayList<String[]> getArrayList(){
         return arrayList;
     }
     
-    public void generateOrder(int itemID, int quantity, double total, String payer) throws IOException{
+    public ArrayList<String[]> getFurnitureList(){
+        return furnitureList;
+    }
+    
+    public void generateOrder(int itemID, int quantity, int total, String payer) throws IOException{
         FileWriter fw = new FileWriter("salesOrder.txt", true);
         PrintWriter outputFile = new PrintWriter(fw);
         int orderID = 0;
@@ -109,5 +144,54 @@ public class Salesperson extends Staff {
         String orderCreated = getCurrentDateTime();
         outputFile.println(orderID + "," + orderCreated + "," + itemID + "," + quantity + "," + total + "," + payer + "," + staffID + ",pending");
         outputFile.close();
+    }
+    
+    public ArrayList<String[]> generateSalesOrderTableDetails(){
+        arrayList.clear();
+        for (String[] order : orderList){
+            if (order.length == 8){
+                String[] details = new String[10];
+                int itemID = Integer.parseInt(order[2]);
+                details[0] = order[0];//order id
+                details[1] = order[1];//date
+                details[2] = order[2];//item id
+                details[3] = furnitureList.get(itemID - 1)[1];//furniture name
+                details[4] = order[3];//quantity
+                details[5] = furnitureList.get(itemID - 1)[3];//price
+                details[6] = order[4];//total
+                details[7] = order[5];//client name
+                details[8] = order[6];//staff id
+                details[9] = order[7];//status
+                arrayList.add(details);
+            }
+        }
+        return arrayList;
+    }
+    
+    public void setOrderID(int orderID){
+        this.salesOrderID = orderID;
+    }
+    
+    public void modifyOrder(int fid, String quantity, String client, String price){
+        int total = Integer.parseInt(quantity) * Integer.parseInt(price);
+        for (String[] order : orderList){
+            if (salesOrderID == Integer.parseInt(order[0])){
+                order[2] = String.valueOf(fid);
+                order[3] = quantity;
+                order[4] = String.valueOf(total);
+                order[5] = client;
+                modifiedOrderDetails = order;
+                break;
+            }
+        }
+        orderList.set(salesOrderID - 1, modifiedOrderDetails);
+    }
+    
+    public ArrayList<String[]> getOrderList(){
+        return orderList;
+    }
+    
+    public int returnStaffID(){
+        return staffID;
     }
 }

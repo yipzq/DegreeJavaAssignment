@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -53,6 +52,27 @@ public class Staff {
         } catch (IOException e) {
             
         }
+    }
+    
+    public String getLastSessionUserType(){
+        String[] details = null;
+        try  {
+            BufferedReader br = new BufferedReader(new FileReader("session.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                details = line.split(",");
+            }
+            br.close();
+        } catch (IOException e) {
+            
+        }
+        for (String[] staffDetails : detailsList){
+            if (details[2].equals(staffDetails[0])){
+                userType = staffDetails[6];
+                break;
+            }
+        }
+        return userType;
     }
     
     public Boolean verifyUser(){

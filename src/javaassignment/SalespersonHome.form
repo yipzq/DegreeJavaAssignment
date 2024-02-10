@@ -26,22 +26,25 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
-                      <Component id="btnlogOut" min="-2" pref="75" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                       <Component id="btnmanageProfile" min="-2" pref="168" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="btnlogOut" min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnManageFurniture" min="-2" pref="138" max="-2" attributes="0"/>
-                          <Component id="btnmanageSaleOrder" min="-2" pref="138" max="-2" attributes="0"/>
+                          <Component id="btnGenerateSaleOrder" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnManageSalesOrder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -57,12 +60,14 @@
               <EmptySpace pref="54" max="32767" attributes="0"/>
               <Component id="btnmanageProfile" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnmanageSaleOrder" min="-2" max="-2" attributes="0"/>
+              <Component id="btnGenerateSaleOrder" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnManageFurniture" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="btnManageSalesOrder" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Component id="btnlogOut" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,12 +81,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmanageProfileActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnmanageSaleOrder">
+    <Component class="javax.swing.JButton" name="btnGenerateSaleOrder">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Sales Order"/>
+        <Property name="text" type="java.lang.String" value="Generate Sales Order"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmanageSaleOrderActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerateSaleOrderActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnlogOut">
@@ -106,6 +111,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageFurnitureActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnManageSalesOrder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Manage Sales Order"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageSalesOrderActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
