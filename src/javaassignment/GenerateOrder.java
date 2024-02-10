@@ -21,8 +21,7 @@ public class GenerateOrder extends javax.swing.JFrame {
     Salesperson obj1 = new Salesperson();
     DataValidation obj2 = new DataValidation();
     ArrayList<String[]> arrayList = new ArrayList<>();
-    int itemID, quantity;
-    double price = 0, total;
+    int itemID, quantity, price = 0, total;
     /**
      * Creates new form GenerateOrder
      */
@@ -62,6 +61,8 @@ public class GenerateOrder extends javax.swing.JFrame {
         btnGenerateOrder = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtPayer = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +138,16 @@ public class GenerateOrder extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setText("Generate Sales Order");
+
+        btnBack.setText("< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,13 +174,25 @@ public class GenerateOrder extends javax.swing.JFrame {
                                 .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(351, 351, 351)
-                        .addComponent(btnGenerateOrder)))
+                        .addComponent(btnGenerateOrder))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(210, 210, 210)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(btnBack)))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -183,7 +206,7 @@ public class GenerateOrder extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGenerateOrder)
                 .addGap(23, 23, 23))
         );
@@ -207,16 +230,20 @@ public class GenerateOrder extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "More than one row selected.","Error",JOptionPane.ERROR_MESSAGE);
         } else {
             if (!payer.isBlank()){
-                if (quantity > 0){
-                    try {
-                        obj1.getStaffID();
-                        obj1.generateOrder(itemID, quantity, total, payer);
-                    } catch (IOException ex) {
-                        Logger.getLogger(GenerateOrder.class.getName()).log(Level.SEVERE, null, ex);
+                if (obj2.containsOnlyNumbers(String.valueOf(quantity))){
+                    if (quantity > 0){
+                        try {
+                            obj1.getStaffID();
+                            obj1.generateOrder(itemID, quantity, total, payer);
+                        } catch (IOException ex) {
+                            Logger.getLogger(GenerateOrder.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(null,"Order generated successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Quantity must be larger than 0.","Error",JOptionPane.ERROR_MESSAGE);
                     }
-                    JOptionPane.showMessageDialog(null,"Order generated successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Quantity must be larger than 0.","Error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Quantity field should only consist of digits(0-9).","Error",JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter name of the payer.","Error",JOptionPane.ERROR_MESSAGE);
@@ -227,7 +254,7 @@ public class GenerateOrder extends javax.swing.JFrame {
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
         itemID = Integer.parseInt(model.getValueAt(table.getSelectedRow(), 0).toString());
-        price = Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
+        price = Integer.parseInt(model.getValueAt(table.getSelectedRow(), 3).toString());
         quantity = Integer.parseInt(txtQuantity.getText());
         total = price * quantity;
         txtTotal.setText(String.valueOf(total));
@@ -270,6 +297,13 @@ public class GenerateOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPayerKeyTyped
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        SalespersonHome a = new SalespersonHome();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,7 +340,9 @@ public class GenerateOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnGenerateOrder;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

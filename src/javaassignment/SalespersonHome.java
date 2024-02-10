@@ -27,10 +27,11 @@ public class SalespersonHome extends javax.swing.JFrame {
     private void initComponents() {
 
         btnmanageProfile = new javax.swing.JButton();
-        btnmanageSaleOrder = new javax.swing.JButton();
+        btnGenerateSaleOrder = new javax.swing.JButton();
         btnlogOut = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnManageFurniture = new javax.swing.JButton();
+        btnManageSalesOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,10 +42,10 @@ public class SalespersonHome extends javax.swing.JFrame {
             }
         });
 
-        btnmanageSaleOrder.setText("Manage Sales Order");
-        btnmanageSaleOrder.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerateSaleOrder.setText("Generate Sales Order");
+        btnGenerateSaleOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmanageSaleOrderActionPerformed(evt);
+                btnGenerateSaleOrderActionPerformed(evt);
             }
         });
 
@@ -65,6 +66,13 @@ public class SalespersonHome extends javax.swing.JFrame {
             }
         });
 
+        btnManageSalesOrder.setText("Manage Sales Order");
+        btnManageSalesOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageSalesOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,19 +80,21 @@ public class SalespersonHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(btnlogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
                         .addComponent(btnmanageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(btnlogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnManageFurniture, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnmanageSaleOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnGenerateSaleOrder)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnManageSalesOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,37 +105,50 @@ public class SalespersonHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(btnmanageProfile)
                 .addGap(18, 18, 18)
-                .addComponent(btnmanageSaleOrder)
+                .addComponent(btnGenerateSaleOrder)
                 .addGap(18, 18, 18)
                 .addComponent(btnManageFurniture)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addComponent(btnManageSalesOrder)
+                .addGap(19, 19, 19)
                 .addComponent(btnlogOut)
-                .addGap(65, 65, 65))
+                .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnlogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogOutActionPerformed
-        TestLogin a = new TestLogin();
+        Login a = new Login();
         a.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnlogOutActionPerformed
 
     private void btnmanageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanageProfileActionPerformed
         PersonalProfile a = new PersonalProfile();
         a.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnmanageProfileActionPerformed
 
-    private void btnmanageSaleOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanageSaleOrderActionPerformed
+    private void btnGenerateSaleOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateSaleOrderActionPerformed
         GenerateOrder a = new GenerateOrder();
         a.setVisible(true);
-    }//GEN-LAST:event_btnmanageSaleOrderActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnGenerateSaleOrderActionPerformed
 
     private void btnManageFurnitureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageFurnitureActionPerformed
         // TODO add your handling code here:
         Manage_Furniture a = new Manage_Furniture();
         a.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnManageFurnitureActionPerformed
+
+    private void btnManageSalesOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSalesOrderActionPerformed
+        // TODO add your handling code here:
+        ManageSalesOrder a = new ManageSalesOrder();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnManageSalesOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,10 +186,11 @@ public class SalespersonHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGenerateSaleOrder;
     private javax.swing.JButton btnManageFurniture;
+    private javax.swing.JButton btnManageSalesOrder;
     private javax.swing.JButton btnlogOut;
     private javax.swing.JButton btnmanageProfile;
-    private javax.swing.JButton btnmanageSaleOrder;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

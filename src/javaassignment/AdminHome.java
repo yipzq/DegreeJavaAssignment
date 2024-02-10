@@ -29,6 +29,8 @@ public class AdminHome extends javax.swing.JFrame {
         btnPersonalProfile = new javax.swing.JButton();
         btnWorkerProfile = new javax.swing.JButton();
         btnWorkDoneReport = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        btnApprovedSalesReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,28 +55,52 @@ public class AdminHome extends javax.swing.JFrame {
             }
         });
 
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        btnApprovedSalesReport.setText("Generate Approved Sales Report");
+        btnApprovedSalesReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApprovedSalesReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPersonalProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnWorkerProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnWorkDoneReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnApprovedSalesReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnWorkDoneReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnWorkerProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPersonalProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(55, 55, 55)
                 .addComponent(btnPersonalProfile)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(btnWorkerProfile)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
+                .addComponent(btnApprovedSalesReport)
+                .addGap(18, 18, 18)
                 .addComponent(btnWorkDoneReport)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(btnLogout)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,10 +122,24 @@ public class AdminHome extends javax.swing.JFrame {
 
     private void btnWorkDoneReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkDoneReportActionPerformed
         // TODO add your handling code here:
-        WorkDoneReport a = new WorkDoneReport();
+        GenerateWorkDoneReport a = new GenerateWorkDoneReport();
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnWorkDoneReportActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        Login a = new Login();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnApprovedSalesReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApprovedSalesReportActionPerformed
+        // TODO add your handling code here:
+        GenerateApprovedSalesReport a = new GenerateApprovedSalesReport();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnApprovedSalesReportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,6 +177,8 @@ public class AdminHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApprovedSalesReport;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPersonalProfile;
     private javax.swing.JButton btnWorkDoneReport;
     private javax.swing.JButton btnWorkerProfile;
