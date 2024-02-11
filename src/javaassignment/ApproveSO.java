@@ -113,6 +113,7 @@ public class ApproveSO extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Pending sale order ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

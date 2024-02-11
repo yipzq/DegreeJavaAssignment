@@ -153,9 +153,12 @@ public class Officer {
     }
     
     public void changeDetails(String value, int index){
-        oidDetails[index] = value;
-        detailsList.set(orderID - 1, oidDetails);
+    String[] updatedDetails = new String[oidDetails.length]; // Create a new array to store the updated details
+    System.arraycopy(oidDetails, 0, updatedDetails, 0, oidDetails.length); // Copy elements from oidDetails to updatedDetails
+    updatedDetails[index] = value; // Update the value at the specified index
+    detailsList.set(orderID - 1, updatedDetails); // Update the detailsList with the modified details
     }
+
    
     
 }
