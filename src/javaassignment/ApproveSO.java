@@ -62,6 +62,7 @@ public class ApproveSO extends javax.swing.JFrame {
         btnApprove = new javax.swing.JButton();
         btnReject = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +74,7 @@ public class ApproveSO extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name ", "Category", "Price", "Title 4", "Title 5", "Title 6", "Title 7", "null"
+                "OrderID ", "Date and Time", "ItemID", "Quantity", "Total Price", "CustomerID", "StaffID", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -112,6 +113,8 @@ public class ApproveSO extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Pending sale order ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,13 +131,17 @@ public class ApproveSO extends javax.swing.JFrame {
                         .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,7 +214,7 @@ public class ApproveSO extends javax.swing.JFrame {
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
         int orderID = Integer.parseInt(model.getValueAt(jTable.getSelectedRow(), 0).toString());
-        saleso.getOrderID(orderID);
+        saleso.setOrderID(orderID);
     }//GEN-LAST:event_jTableMouseClicked
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -255,6 +262,7 @@ public class ApproveSO extends javax.swing.JFrame {
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnReject;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
