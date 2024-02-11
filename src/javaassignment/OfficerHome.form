@@ -44,6 +44,7 @@
                   <Component id="invoicebtn" max="32767" attributes="0"/>
                   <Component id="invoicebtn1" alignment="0" max="32767" attributes="0"/>
                   <Component id="approvedSalesReportbtn" max="32767" attributes="0"/>
+                  <Component id="workDoneReportbtn" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="88" max="32767" attributes="0"/>
           </Group>
@@ -64,7 +65,9 @@
               <Component id="invoicebtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="approvedSalesReportbtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="workDoneReportbtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,6 +119,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="approvedSalesReportbtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="workDoneReportbtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Work Done Report"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="workDoneReportbtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
