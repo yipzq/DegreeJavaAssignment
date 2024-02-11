@@ -33,6 +33,7 @@ public class OfficerHome extends javax.swing.JFrame {
         CheckSalesbtn = new javax.swing.JButton();
         invoicebtn = new javax.swing.JButton();
         invoicebtn1 = new javax.swing.JButton();
+        approvedSalesReportbtn = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -75,6 +76,13 @@ public class OfficerHome extends javax.swing.JFrame {
             }
         });
 
+        approvedSalesReportbtn.setText("Approved Sales Report");
+        approvedSalesReportbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approvedSalesReportbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,7 +94,8 @@ public class OfficerHome extends javax.swing.JFrame {
                     .addComponent(btnsearchModi, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(CheckSalesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(invoicebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(invoicebtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(invoicebtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(approvedSalesReportbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,7 +111,9 @@ public class OfficerHome extends javax.swing.JFrame {
                 .addComponent(CheckSalesbtn)
                 .addGap(18, 18, 18)
                 .addComponent(invoicebtn)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(approvedSalesReportbtn)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,6 +147,13 @@ public class OfficerHome extends javax.swing.JFrame {
         new ManagePersonal_Officer().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_invoicebtn1ActionPerformed
+
+    private void approvedSalesReportbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approvedSalesReportbtnActionPerformed
+        // TODO add your handling code here:
+        GenerateApprovedSalesReport a = new GenerateApprovedSalesReport();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_approvedSalesReportbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +192,7 @@ public class OfficerHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CheckSalesbtn;
+    private javax.swing.JButton approvedSalesReportbtn;
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnsearchModi;
     private javax.swing.JButton invoicebtn;
