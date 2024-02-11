@@ -26,7 +26,7 @@ public class ApproveSO extends javax.swing.JFrame {
     DefaultTableModel model;
     Officer saleso = new Officer();
     ArrayList<String[]> detailsList = new ArrayList<>();
-    
+    String status;
     
     
     public ApproveSO() {
@@ -164,18 +164,22 @@ public class ApproveSO extends javax.swing.JFrame {
         } else if (jTable.getSelectedRowCount() > 1){
             JOptionPane.showMessageDialog(null, "More than one row selected.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to approve this account?", "Approve Account", JOptionPane.YES_NO_OPTION);
-            if (n==JOptionPane.YES_OPTION){
-            saleso.reject();
-        
-            try {
-                saleso.overwriteFile("salesOrder.txt", saleso.getDetailsList(), 8);
-            } catch (IOException ex) {
-                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+            if (status.equals("Pending") || status.equals("pending")){
+                int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to approve this account?", "Approve Account", JOptionPane.YES_NO_OPTION);
+                if (n==JOptionPane.YES_OPTION){
+                    saleso.reject();
+
+                    try {
+                        saleso.overwriteFile("salesOrder.txt", saleso.getDetailsList(), 8);
+                    } catch (IOException ex) {
+                        Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    displaySO();
+                    JOptionPane.showMessageDialog(null,"Row rejected successfully.","Success",JOptionPane.INFORMATION_MESSAGE); 
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Only orders with status 'pending' can be rejected.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            displaySO();
-            JOptionPane.showMessageDialog(null,"Row rejected successfully.","Success",JOptionPane.INFORMATION_MESSAGE); 
-           }           
         }  
     }//GEN-LAST:event_btnRejectActionPerformed
 
@@ -188,26 +192,30 @@ public class ApproveSO extends javax.swing.JFrame {
     } else if (jTable.getSelectedRowCount() > 1) {
         JOptionPane.showMessageDialog(null, "More than one row selected.", "Error", JOptionPane.ERROR_MESSAGE);
     } else {
-        int selectedRowIndex = jTable.getSelectedRow();
-        int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to approve this account?", "Approve Account", JOptionPane.YES_NO_OPTION);
-        if (n == JOptionPane.YES_OPTION) {
-            saleso.edit();
-            try {
-                // Overwrite the existing file
-                saleso.overwriteFile("salesOrder.txt", saleso.getDetailsList(), 8);
+        if (status.equals("Pending") || status.equals("pending")){
+            int selectedRowIndex = jTable.getSelectedRow();
+            int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to approve this account?", "Approve Account", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+                saleso.edit();
+                try {
+                    // Overwrite the existing file
+                    saleso.overwriteFile("salesOrder.txt", saleso.getDetailsList(), 8);
 
-                // Get the selected row data
-                String[] selectedRowData = saleso.getDetailsList().get(selectedRowIndex);
+                    // Get the selected row data
+                    String[] selectedRowData = saleso.getDetailsList().get(selectedRowIndex);
 
-                // Append data to the new file
-                saleso.appendToFile("ApprovedSO.txt", List.of(selectedRowData));
+                    // Append data to the new file
+                    saleso.appendToFile("ApprovedSO.txt", List.of(selectedRowData));
 
-                displaySO();
+                    displaySO();
 
-                JOptionPane.showMessageDialog(null, "Row edited successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Row edited successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Only orders with status 'pending' can be approved.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -215,6 +223,7 @@ public class ApproveSO extends javax.swing.JFrame {
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
         int orderID = Integer.parseInt(model.getValueAt(jTable.getSelectedRow(), 0).toString());
+        status = model.getValueAt(jTable.getSelectedRow(), 7).toString();
         saleso.setOrderID(orderID);
     }//GEN-LAST:event_jTableMouseClicked
 
