@@ -22,13 +22,17 @@ public class SearchModiSO extends javax.swing.JFrame {
     DefaultTableModel model;
     Officer saleso = new Officer();
     ArrayList<String[]> detailsList = new ArrayList<>();
-    int results, orderID;
+    int results, orderID, quantity;
     String [] sales;
+    String itemID;
+    double price, total;
     
     public SearchModiSO() {
         initComponents();
         model = (DefaultTableModel) jTable.getModel();
         displayASO();
+        saleso.readFurFile();
+        saleso.readASOFile();
     }
     
     private void displayASO(){
@@ -36,10 +40,8 @@ public class SearchModiSO extends javax.swing.JFrame {
         saleso.readASOFile();
         detailsList = saleso.getDetailsList();
         for (String[] details : detailsList){
-            if (details.length == 8){
-                if (details[7].equals("In progress")){
+            if (details.length == 8){              
                     model.insertRow(model.getRowCount(), new Object[]{details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7]});
-                }
             }
         }
     }
@@ -55,6 +57,18 @@ public class SearchModiSO extends javax.swing.JFrame {
             }
         }
     }
+    
+    /*
+    public void calPrice(String itemID){
+        for (var details : detailsList){
+            if (itemID.equals(details[0])){
+                price = Integer.parseInt(details[3]);
+                break;              
+            }
+        }
+        total = price * quantity;
+    }
+    */
     
     public void search(int orderID) {
         boolean found = false;
@@ -97,11 +111,9 @@ public class SearchModiSO extends javax.swing.JFrame {
         btnEditRow = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cmbStatus = new javax.swing.JComboBox<>();
-        txtTotalPrice = new javax.swing.JTextField();
         btnClearForm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -182,19 +194,11 @@ public class SearchModiSO extends javax.swing.JFrame {
 
         jLabel2.setText("Quantity :");
 
-        jLabel3.setText("Total Price :");
-
         jLabel4.setText("Customer / Organization name : ");
 
         jLabel5.setText("Status :");
 
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "In progress ", "Work Done" }));
-
-        txtTotalPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalPriceActionPerformed(evt);
-            }
-        });
 
         btnClearForm.setText("Clear Form");
         btnClearForm.addActionListener(new java.awt.event.ActionListener() {
@@ -209,41 +213,37 @@ public class SearchModiSO extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5))
+                            .addGap(36, 36, 36)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtQuantity)
+                                .addComponent(txtcoName)
+                                .addComponent(cmbStatus, 0, 133, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnClearForm, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(19, 19, 19)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnSearch)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnViewAll))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtQuantity)
-                            .addComponent(txtcoName)
-                            .addComponent(cmbStatus, 0, 133, Short.MAX_VALUE)
-                            .addComponent(txtTotalPrice))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnClearForm))
+                        .addGap(326, 326, 326)
+                        .addComponent(btnEditRow))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnSearch)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnViewAll))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(315, 315, 315)
-                                .addComponent(btnEditRow))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(280, 280, 280)
-                                .addComponent(btnBack)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(288, 288, 288)
+                        .addComponent(btnBack)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -265,24 +265,18 @@ public class SearchModiSO extends javax.swing.JFrame {
                     .addComponent(btnClearForm))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtcoName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(btnEditRow)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(txtcoName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))))
+                .addGap(51, 51, 51)
+                .addComponent(btnEditRow)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,25 +316,24 @@ public class SearchModiSO extends javax.swing.JFrame {
         } else if (jTable.getSelectedRowCount() > 1){
             JOptionPane.showMessageDialog(null, "More than one row selected.","Error",JOptionPane.ERROR_MESSAGE);
         } else {
-            String quantity, totalPrice, coName, status;
-            quantity = txtQuantity.getText();
-            totalPrice = txtTotalPrice.getText();   
+            String quantity ,coName, status;
+            quantity = txtQuantity.getText();   
             coName = txtcoName.getText();
             status = String.valueOf(cmbStatus.getSelectedItem());
 
-            String[] details = {String.valueOf(orderID), quantity, totalPrice, coName, status};
+            String[] details = {String.valueOf(orderID), quantity, coName, status};
 
-            saleso.getOrderID(orderID);
-            saleso.getVerifiedUserDetails();
+            saleso.setOrderID(orderID);
+            saleso.getoidDetails();
             int count = 0;
             for (var detail : details){
                 saleso.changeDetails(detail, count);
                 count ++;
             }
             try {
-                saleso.overwriteFile("ApproveSO.txt", saleso.getDetailsList(), 7);
+                saleso.overwriteFile("ApprovedSO.txt", saleso.getDetailsList(), 8);
             } catch (IOException ex) {
-                Logger.getLogger(WorkerProfile.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SearchModiSO.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             displayASO();            
@@ -351,24 +344,22 @@ public class SearchModiSO extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditRowActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
-        int orderID = Integer.parseInt(model.getValueAt(jTable.getSelectedRow(), 0).toString());
-        saleso.getOrderID(orderID);
-
+        orderID = Integer.parseInt(model.getValueAt(jTable.getSelectedRow(), 0).toString());
+        saleso.setOrderID(orderID);
+        
         String tbQuantity = model.getValueAt(jTable.getSelectedRow(), 3).toString();
-        String tbTotalPrice = model.getValueAt(jTable.getSelectedRow(), 4).toString(); 
         String tbCoName = model.getValueAt(jTable.getSelectedRow(), 5).toString();
         String tbStatus = model.getValueAt(jTable.getSelectedRow(),7).toString(); 
 
         txtQuantity.setText(tbQuantity);
-        txtTotalPrice.setText(tbTotalPrice);
         txtcoName.setText(tbCoName);
          if (tbStatus.equals("In Progress")){
             cmbStatus.setSelectedIndex(1);
         } else if (tbStatus.equals("Work Done")){
             cmbStatus.setSelectedIndex(2);
         }
-
-// Your remaining code here...
+        
+       // calPrice(itemID);
 
     }//GEN-LAST:event_jTableMouseClicked
 
@@ -379,14 +370,9 @@ public class SearchModiSO extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtTotalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalPriceActionPerformed
-
     private void btnClearFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFormActionPerformed
         // TODO add your handling code here:
         txtQuantity.setText("");
-        txtTotalPrice.setText("");
         txtcoName.setText("");
         cmbStatus.setSelectedIndex(0);
     }//GEN-LAST:event_btnClearFormActionPerformed
@@ -436,14 +422,12 @@ public class SearchModiSO extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSearchBar;
-    private javax.swing.JTextField txtTotalPrice;
     private javax.swing.JTextField txtcoName;
     // End of variables declaration//GEN-END:variables
 
