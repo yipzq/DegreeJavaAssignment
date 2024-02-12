@@ -21,7 +21,7 @@ import java.util.List;
 public class Officer {
     
     protected int orderID ,results;
-    protected ArrayList<String[]> detailsList = new ArrayList<>();
+    protected ArrayList<String[]> detailsList = new ArrayList<>(), approvedSOList = new ArrayList<>(), furnitureList = new ArrayList<>();
     
     protected String userType;
     protected String [] sales, oidDetails,calPrice;
@@ -35,6 +35,21 @@ public class Officer {
             while ((line = br.readLine()) != null) {
                 String[] details = line.split(",");
                 detailsList.add(details);
+            }
+            br.close();
+        } catch (IOException e) {
+            
+        }
+    }
+    
+    public void readASOFile2(){
+        approvedSOList.clear();
+        try  {
+            BufferedReader br = new BufferedReader(new FileReader("ApprovedSO.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] details = line.split(",");
+                approvedSOList.add(details);
             }
             br.close();
         } catch (IOException e) {
@@ -96,6 +111,10 @@ public class Officer {
         return detailsList;
     }
     
+    public ArrayList<String[]> getApprovedSOList(){
+        return approvedSOList;
+    }
+    
     
     public void getOrderID() throws FileNotFoundException, IOException{
         BufferedReader br = new BufferedReader(new FileReader("session.txt"));
@@ -152,14 +171,41 @@ public class Officer {
         return null;
     }
     
+    public String[] getOrderDetails(){
+        for (var details : approvedSOList){
+            if (orderID == Integer.parseInt(details[0])){
+                oidDetails = details;
+                return oidDetails;
+            }
+        }
+        return null;
+    }
+    
     public void changeDetails(String value, int index){
-    String[] updatedDetails = new String[oidDetails.length]; // Create a new array to store the updated details
-    System.arraycopy(oidDetails, 0, updatedDetails, 0, oidDetails.length); // Copy elements from oidDetails to updatedDetails
-    updatedDetails[index] = value; // Update the value at the specified index
-    detailsList.set(orderID - 1, updatedDetails); // Update the detailsList with the modified details
+        String[] updatedDetails = new String[oidDetails.length]; // Create a new array to store the updated details
+        System.arraycopy(oidDetails, 0, updatedDetails, 0, oidDetails.length); // Copy elements from oidDetails to updatedDetails
+        updatedDetails[index] = value; // Update the value at the specified index
+        detailsList.set(orderID - 1, updatedDetails); // Update the detailsList with the modified details
     }
 
-   
+    public ArrayList<String[]> changeSODetails(String quantity, String coName, String status, String itemID){
+        String price = null;
+        oidDetails[3] = quantity;
+        oidDetails[5] = coName;
+        oidDetails[7] = status;
+        readFurFile();
+        furnitureList = detailsList;
+        for (String[] furniture : furnitureList){
+            if (itemID.equals(furniture[0])){
+                price = furniture[3];
+                break;
+            }
+        }
+        int total = Integer.parseInt(quantity) * Integer.parseInt(price);
+        oidDetails[4] = String.valueOf(total);
+        approvedSOList.set(orderID - 1, oidDetails);
+        return approvedSOList;
+    }
     
 }
     

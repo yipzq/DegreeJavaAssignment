@@ -20,7 +20,7 @@ public class WorkDoneReport extends ApprovedSalesReport{
             String line;
             while ((line = br.readLine()) != null) {
                 String[] order = line.split(",");
-                if (order[7].equals("Work done")){
+                if (order[7].equals("Work done") || order[7].equals("Work Done")){
                     orderList.add(order);
                 }
             }
