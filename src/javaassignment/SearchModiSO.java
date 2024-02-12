@@ -32,13 +32,13 @@ public class SearchModiSO extends javax.swing.JFrame {
         model = (DefaultTableModel) jTable.getModel();
         displayASO();
         saleso.readFurFile();
-        saleso.readASOFile();
+        saleso.readASOFile2();
     }
     
     private void displayASO(){
         model.setRowCount(0);
-        saleso.readASOFile();
-        detailsList = saleso.getDetailsList();
+        saleso.readASOFile2();
+        detailsList = saleso.getApprovedSOList();
         for (String[] details : detailsList){
             if (details.length == 8){              
                     model.insertRow(model.getRowCount(), new Object[]{details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7]});
@@ -201,7 +201,7 @@ public class SearchModiSO extends javax.swing.JFrame {
 
         jLabel5.setText("Status :");
 
-        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "In progress ", "Work Done" }));
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "In Progress ", "Work Done" }));
 
         btnClearForm.setText("Clear Form");
         btnClearForm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -349,17 +349,11 @@ public class SearchModiSO extends javax.swing.JFrame {
             coName = txtcoName.getText();
             status = String.valueOf(cmbStatus.getSelectedItem());
 
-            String[] details = {String.valueOf(orderID), quantity, coName, status};
-
             saleso.setOrderID(orderID);
-            saleso.getoidDetails();
-            int count = 0;
-            for (var detail : details){
-                saleso.changeDetails(detail, count);
-                count ++;
-            }
+            saleso.getOrderDetails();
+            ArrayList<String[]> al = saleso.changeSODetails(quantity, coName, status, itemID);
             try {
-                saleso.overwriteFile("ApprovedSO.txt", saleso.getDetailsList(), 8);
+                saleso.overwriteFile("ApprovedSO.txt", al, 8);
             } catch (IOException ex) {
                 Logger.getLogger(SearchModiSO.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -377,7 +371,8 @@ public class SearchModiSO extends javax.swing.JFrame {
         
         String tbQuantity = model.getValueAt(jTable.getSelectedRow(), 3).toString();
         String tbCoName = model.getValueAt(jTable.getSelectedRow(), 5).toString();
-        String tbStatus = model.getValueAt(jTable.getSelectedRow(),7).toString(); 
+        String tbStatus = model.getValueAt(jTable.getSelectedRow(),7).toString();
+        itemID = model.getValueAt(jTable.getSelectedRow(),2).toString();
 
         txtQuantity.setText(tbQuantity);
         txtcoName.setText(tbCoName);

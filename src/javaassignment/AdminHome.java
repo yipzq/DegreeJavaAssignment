@@ -5,6 +5,10 @@
 package javaassignment;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -148,9 +152,12 @@ public class AdminHome extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        Login a = new Login();
-        a.setVisible(true);
-        this.setVisible(false);
+        int n = JOptionPane.showConfirmDialog(null, "Logout of account?", "Logout", JOptionPane.YES_NO_OPTION);
+        if (n==JOptionPane.YES_OPTION){
+            Login a = new Login();
+            a.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnApprovedSalesReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApprovedSalesReportActionPerformed

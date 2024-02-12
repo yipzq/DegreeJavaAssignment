@@ -182,7 +182,7 @@ public class OfficerHome extends javax.swing.JFrame {
     }//GEN-LAST:event_invoicebtnActionPerformed
 
     private void invoicebtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoicebtn1ActionPerformed
-        new ManagePersonal_Officer().setVisible(true);
+        new PersonalProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_invoicebtn1ActionPerformed
 
