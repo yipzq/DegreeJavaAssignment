@@ -118,6 +118,7 @@ public class SearchModiSO extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
