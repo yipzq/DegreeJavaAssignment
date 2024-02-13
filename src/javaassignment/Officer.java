@@ -61,11 +61,15 @@ public class Officer {
         FileWriter fw = new FileWriter(file, false);
         PrintWriter outputFile = new PrintWriter(fw);
         for (var details : list) {
-            outputFile.print(details[0]);
-            for (int i = 1; i < lengthOfArray; i++) {
-                outputFile.print("," + details[i]);
+            if (details.length == lengthOfArray){
+                outputFile.print(details[0]);
+                for (int i = 1; i < lengthOfArray; i++) {
+                    outputFile.print("," + details[i]);
+                }
+                outputFile.print("\n");
+            } else {
+                outputFile.print("\n");
             }
-            outputFile.print("\n");
         }
         outputFile.close();
     }
@@ -146,18 +150,22 @@ public class Officer {
 
     public void edit(){
         for (String[] details : detailsList){
-            if (Integer.parseInt(details[0]) == orderID){
-                details[7] = "Approved";
-            }    
+            if (details.length == 8){
+                if (Integer.parseInt(details[0]) == orderID){
+                    details[7] = "Approved";
+                }    
+            }
         }       
     }
     
     public void reject(){
         for (String[] details : detailsList){
-            if (Integer.parseInt(details[0]) == orderID){
-                details[7] = "Rejected";
-            }    
-        }       
+            if (details.length == 8){
+                if (Integer.parseInt(details[0]) == orderID){
+                    details[7] = "Rejected";
+                }
+            }
+        }
     }
     
     public String[] getoidDetails(){
@@ -207,6 +215,23 @@ public class Officer {
         return approvedSOList;
     }
     
+    public int getNewID(String file) throws IOException{
+        int id = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            int lineCount = 0;
+
+            while (br.readLine() != null) {
+                lineCount++;
+            }
+            id = lineCount + 1;
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
 }
     
    
