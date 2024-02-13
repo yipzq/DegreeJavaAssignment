@@ -234,9 +234,6 @@ public class ApproveSO extends javax.swing.JFrame {
                             break;
                         }
                     }
-                    
-                    String id = String.valueOf(saleso.getNewID("ApprovedSO.txt"));
-                    selectedRowData[0] = id;
                     selectedRowData[7] = "In Progress";
 
                     // Append data to the new file
