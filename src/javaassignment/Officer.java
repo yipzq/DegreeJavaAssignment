@@ -211,7 +211,13 @@ public class Officer {
         }
         int total = Integer.parseInt(quantity) * Integer.parseInt(price);
         oidDetails[4] = String.valueOf(total);
-        approvedSOList.set(orderID - 1, oidDetails);
+        for (String[] list : approvedSOList){
+            if (list[0].equals(String.valueOf(orderID))){
+                int index = approvedSOList.indexOf(list);
+                approvedSOList.set(index, oidDetails);
+                break;
+            }
+        }
         return approvedSOList;
     }
     
