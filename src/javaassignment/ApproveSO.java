@@ -66,6 +66,7 @@ public class ApproveSO extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,7 +189,7 @@ public class ApproveSO extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "More than one row selected.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             if (status.equals("Pending") || status.equals("pending")){
-                int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to approve this account?", "Approve Account", JOptionPane.YES_NO_OPTION);
+                int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to reject this order?", "Reject Order", JOptionPane.YES_NO_OPTION);
                 if (n==JOptionPane.YES_OPTION){
                     saleso.reject();
 
@@ -217,7 +218,7 @@ public class ApproveSO extends javax.swing.JFrame {
     } else {
         if (status.equals("Pending") || status.equals("pending")){
             int selectedRowIndex = jTable.getSelectedRow();
-            int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to approve this account?", "Approve Account", JOptionPane.YES_NO_OPTION);
+            int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to approve this order?", "Approve Order", JOptionPane.YES_NO_OPTION);
             if (n == JOptionPane.YES_OPTION) {
                 saleso.edit();
                 try {
