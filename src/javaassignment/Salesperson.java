@@ -175,13 +175,15 @@ public class Salesperson extends Staff {
     public void modifyOrder(int fid, String quantity, String client, String price){
         int total = Integer.parseInt(quantity) * Integer.parseInt(price);
         for (String[] order : orderList){
-            if (salesOrderID == Integer.parseInt(order[0])){
-                order[2] = String.valueOf(fid);
-                order[3] = quantity;
-                order[4] = String.valueOf(total);
-                order[5] = client;
-                modifiedOrderDetails = order;
-                break;
+            if (order.length == 8){
+                if (salesOrderID == Integer.parseInt(order[0])){
+                    order[2] = String.valueOf(fid);
+                    order[3] = quantity;
+                    order[4] = String.valueOf(total);
+                    order[5] = client;
+                    modifiedOrderDetails = order;
+                    break;
+                }
             }
         }
         orderList.set(salesOrderID - 1, modifiedOrderDetails);

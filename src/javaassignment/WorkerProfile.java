@@ -363,6 +363,7 @@ public class WorkerProfile extends javax.swing.JFrame {
             }
             phoneNumber = txtPhoneNumber.getText();
             position = String.valueOf(cmbPosition.getSelectedItem());
+            obj2.setStaffID(staffID);
             if (!name.isBlank() && !gender.isBlank() && !phoneNumber.isBlank() && !position.equals("--None--")){
                 if (!obj2.usernameExists(username)){
                     if (obj3.betweenCharacterLimit(5, 12, username)){
@@ -372,7 +373,6 @@ public class WorkerProfile extends javax.swing.JFrame {
                                     if (obj3.containsOnlyNumbers(phoneNumber)){
                                         if (password.equals(confirmPassword)){
                                             String[] details = {String.valueOf(staffID), username, password, name, gender, phoneNumber, position};
-                                            obj2.setStaffID(staffID);
                                             obj2.getVerifiedUserDetails();
                                             int count = 0;
                                             for (var detail : details){
@@ -437,6 +437,7 @@ public class WorkerProfile extends javax.swing.JFrame {
         }
         phoneNumber = txtPhoneNumber.getText();
         position = String.valueOf(cmbPosition.getSelectedItem());
+        obj2.setStaffID(0);
         if (!name.isBlank() && !gender.isBlank() && !phoneNumber.isBlank() && !position.equals("--None--")){
             if (!obj2.usernameExists(username)){
                 if (obj3.betweenCharacterLimit(5, 12, username)){

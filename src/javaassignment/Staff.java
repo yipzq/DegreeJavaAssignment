@@ -163,11 +163,15 @@ public class Staff {
         FileWriter fw = new FileWriter(file, false);
         PrintWriter outputFile = new PrintWriter(fw);
         for (var details : list){
-            outputFile.print(details[0]);
-            for (int i = 1; i < lengthOfArray; i++){
-                outputFile.print("," + details[i]);
+            if (details.length == lengthOfArray){
+                outputFile.print(details[0]);
+                for (int i = 1; i < lengthOfArray; i++){
+                    outputFile.print("," + details[i]);
+                }
+                outputFile.print("\n");
+            } else {
+                outputFile.print("\n");
             }
-            outputFile.print("\n");
         }
         outputFile.close();
     }
@@ -177,9 +181,16 @@ public class Staff {
     }
     
     public Boolean usernameExists(String input){
-        for (var details : detailsList){
-            if (input.equals(details[1])){
-                return true;
+        for (String[] details : detailsList){
+            if (details.length == 7){
+                if (staffID == Integer.parseInt(details[0])){
+                    if (input.equals(details[1])){
+                        continue;
+                    }
+                }
+                if (input.equals(details[1])){
+                    return true;
+                }
             }
         }
         return false;

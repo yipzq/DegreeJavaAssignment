@@ -27,7 +27,7 @@ public class ApproveSO extends javax.swing.JFrame {
     Officer saleso = new Officer();
     ArrayList<String[]> detailsList = new ArrayList<>();
     String status;
-    
+    int orderID;
     
     public ApproveSO() {
         initComponents();
@@ -226,7 +226,18 @@ public class ApproveSO extends javax.swing.JFrame {
                     saleso.overwriteFile("salesOrder.txt", saleso.getDetailsList(), 8);
 
                     // Get the selected row data
-                    String[] selectedRowData = saleso.getDetailsList().get(selectedRowIndex);
+                    String[] selectedRowData = null;
+                    ArrayList<String[]> al = saleso.getDetailsList();
+                    for (String[] data : al){
+                        if (data[0].equals(String.valueOf(orderID))){
+                            selectedRowData = data;
+                            break;
+                        }
+                    }
+                    
+                    String id = String.valueOf(saleso.getNewID("ApprovedSO.txt"));
+                    selectedRowData[0] = id;
+                    selectedRowData[7] = "In Progress";
 
                     // Append data to the new file
                     saleso.appendToFile("ApprovedSO.txt", List.of(selectedRowData));
@@ -246,7 +257,7 @@ public class ApproveSO extends javax.swing.JFrame {
     }//GEN-LAST:event_btnApproveActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
-        int orderID = Integer.parseInt(model.getValueAt(jTable.getSelectedRow(), 0).toString());
+        orderID = Integer.parseInt(model.getValueAt(jTable.getSelectedRow(), 0).toString());
         status = model.getValueAt(jTable.getSelectedRow(), 7).toString();
         saleso.setOrderID(orderID);
     }//GEN-LAST:event_jTableMouseClicked

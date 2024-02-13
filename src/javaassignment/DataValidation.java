@@ -32,7 +32,7 @@ public class DataValidation {
     
     public Boolean containsSymbol(String input){
         // Regular expression to match any character that is not a letter or a digit
-        String regex = ".*[^a-zA-Z0-9].*";
+        String regex = ".*[^a-zA-Z0-9\\s].*";
 
         // Check if the input string matches the regular expression
         return input.matches(regex);
