@@ -41,7 +41,7 @@ public class DataValidation {
     public Boolean betweenCharacterLimit(int min, int max, String input){
         return min <= input.length() && input.length() <= max;
     }
-    
+     
     public String formatToTwoDecimalPlace(double input){
         String formattedNumber = String.format("%.2f", input);
         return formattedNumber;
