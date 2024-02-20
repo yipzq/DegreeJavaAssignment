@@ -108,7 +108,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="199" max="32767" attributes="0"/>
+                  <EmptySpace pref="188" max="32767" attributes="0"/>
                   <Component id="btnPersonalProfile" min="-2" pref="167" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnLogout" min="-2" pref="75" max="-2" attributes="0"/>
@@ -142,7 +142,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Admin home page "/>
+            <Property name="text" type="java.lang.String" value="ADMIN HOME PAGE "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnLogout">
@@ -181,7 +181,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="-4" width="630" height="500"/>
+          <AbsoluteConstraints x="0" y="-4" width="620" height="500"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -22,6 +22,7 @@ public class SearchModiSO extends javax.swing.JFrame {
     DefaultTableModel model;
     Officer saleso = new Officer();
     ArrayList<String[]> detailsList = new ArrayList<>();
+    DataValidation valid = new DataValidation();
     int results, orderID, quantity;
     String [] sales;
     String itemID;
@@ -340,30 +341,34 @@ public class SearchModiSO extends javax.swing.JFrame {
     }//GEN-LAST:event_txtcoNameActionPerformed
 
     private void btnEditRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditRowActionPerformed
-        if (jTable.getSelectedRowCount() < 1){
-            JOptionPane.showMessageDialog(null, "No row selected.","Error",JOptionPane.ERROR_MESSAGE);
-        } else if (jTable.getSelectedRowCount() > 1){
-            JOptionPane.showMessageDialog(null, "More than one row selected.","Error",JOptionPane.ERROR_MESSAGE);
+      if (jTable.getSelectedRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "No row selected.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (jTable.getSelectedRowCount() > 1) {
+            JOptionPane.showMessageDialog(null, "More than one row selected.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            String quantity ,coName, status;
-            quantity = txtQuantity.getText();   
+            String quantity, coName, status;
+            quantity = txtQuantity.getText();
             coName = txtcoName.getText();
             status = String.valueOf(cmbStatus.getSelectedItem());
 
-            saleso.setOrderID(orderID);
-            saleso.getOrderDetails();
-            ArrayList<String[]> al = saleso.changeSODetails(quantity, coName, status, itemID);
-            try {
-                saleso.overwriteFile("ApprovedSO.txt", al, 8);
-            } catch (IOException ex) {
-                Logger.getLogger(SearchModiSO.class.getName()).log(Level.SEVERE, null, ex);
+            // Combined validation for quantity
+            if (!valid.containsOnlyNumbers(quantity)) {
+                JOptionPane.showMessageDialog(null, "Quantity can only contain only numbers.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                // Proceed if both validations pass
+                saleso.setOrderID(orderID);
+                saleso.getOrderDetails();
+                ArrayList<String[]> al = saleso.changeSODetails(quantity, coName, status, itemID);
+                try {
+                    saleso.overwriteFile("ApprovedSO.txt", al, 8);
+                } catch (IOException ex) {
+                    Logger.getLogger(SearchModiSO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                displayASO();
+                JOptionPane.showMessageDialog(null, "Row edited successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
-
-            displayASO();            
-            JOptionPane.showMessageDialog(null,"Row edited successfully.","Success",JOptionPane.INFORMATION_MESSAGE);
         }
-
-        
     }//GEN-LAST:event_btnEditRowActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
