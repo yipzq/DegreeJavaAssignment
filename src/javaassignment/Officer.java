@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author mcsee
  */
-public class Officer {
+public class Officer extends Staff{
     
     protected int orderID ,results;
     protected ArrayList<String[]> detailsList = new ArrayList<>(), approvedSOList = new ArrayList<>(), furnitureList = new ArrayList<>();
