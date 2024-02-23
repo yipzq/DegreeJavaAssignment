@@ -123,7 +123,7 @@ public class GenerateApprovedSalesReport extends javax.swing.JFrame {
             }
         });
 
-        btnBack.setText("Return to officer menu");
+        btnBack.setText("Return to menu");
         btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

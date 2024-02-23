@@ -20,7 +20,7 @@ import javaassignment.Salesperson;
  *
  * @author Joshua
  */
-public class Sales_Orders {
+public class Furniture {
     void addOrders(int i, String f, String c, double p, String oc, String d, String sd){
         try {
             FileWriter fw = new FileWriter("furniture.txt", true);

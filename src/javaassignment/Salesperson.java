@@ -17,9 +17,9 @@ import java.util.ArrayList;
  */
 public class Salesperson extends Staff {
     
-    int id, salesOrderID;
-    String[] modifiedOrderDetails;
-    ArrayList<String[]> arrayList = new ArrayList<>(), furnitureList = new ArrayList<>(), orderList = new ArrayList<>();
+    private int id, salesOrderID;
+    private String[] modifiedOrderDetails;
+    private ArrayList<String[]> arrayList = new ArrayList<>(), furnitureList = new ArrayList<>(), orderList = new ArrayList<>();
     
     Salesperson(){
         

@@ -16,8 +16,8 @@ import java.util.ArrayList;
  * @author yipzh
  */
 public class ApprovedSalesReport {
-    ArrayList<String[]> furnitureList = new ArrayList<>(), orderList = new ArrayList<>(), reportDetails = new ArrayList<>(), filteredReportDetails = new ArrayList<>(), filteredOrderList = new ArrayList<>();
-    int[] furnitureQuantity, overallFurnitureQuantity;
+    protected ArrayList<String[]> furnitureList = new ArrayList<>(), orderList = new ArrayList<>(), reportDetails = new ArrayList<>(), filteredReportDetails = new ArrayList<>(), filteredOrderList = new ArrayList<>();
+    protected int[] furnitureQuantity, overallFurnitureQuantity;
     
     public void readFurnitureFile(){
         try  {
@@ -58,8 +58,10 @@ public class ApprovedSalesReport {
             array[i] = 0;
         }
         for (String[] order : orderList){
-            int itemID = Integer.parseInt(order[2]);
-            array[itemID - 1] = array[itemID - 1] + Integer.parseInt(order[3]);
+            if (order.length == 8){
+                int itemID = Integer.parseInt(order[2]);
+                array[itemID - 1] = array[itemID - 1] + Integer.parseInt(order[3]);
+            }
         }
         overallFurnitureQuantity = array;
     }
@@ -110,17 +112,19 @@ public class ApprovedSalesReport {
     public void filterReportByMonthAndYear(int m, int y){
         filteredOrderList.clear();
         for (String[] order : orderList){
-            // Create a formatter for the given pattern
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            if (order.length == 8){
+                // Create a formatter for the given pattern
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-            // Parse the string to LocalDateTime
-            LocalDateTime dateTime = LocalDateTime.parse(order[1], formatter);
+                // Parse the string to LocalDateTime
+                LocalDateTime dateTime = LocalDateTime.parse(order[1], formatter);
 
-            // Extract year and month
-            int year = dateTime.getYear();
-            int month = dateTime.getMonthValue();
-            if (m == month && y == year){
-                filteredOrderList.add(order);
+                // Extract year and month
+                int year = dateTime.getYear();
+                int month = dateTime.getMonthValue();
+                if (m == month && y == year){
+                    filteredOrderList.add(order);
+                }
             }
         }
     }
@@ -128,16 +132,18 @@ public class ApprovedSalesReport {
     public void filterReportByYear(int y){
         filteredOrderList.clear();
         for (String[] order : orderList){
-            // Create a formatter for the given pattern
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            if (order.length == 8){
+                // Create a formatter for the given pattern
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-            // Parse the string to LocalDateTime
-            LocalDateTime dateTime = LocalDateTime.parse(order[1], formatter);
+                // Parse the string to LocalDateTime
+                LocalDateTime dateTime = LocalDateTime.parse(order[1], formatter);
 
-            // Extract year and month
-            int year = dateTime.getYear();
-            if (y == year){
-                filteredOrderList.add(order);
+                // Extract year and month
+                int year = dateTime.getYear();
+                if (y == year){
+                    filteredOrderList.add(order);
+                }
             }
         }
     }
