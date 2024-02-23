@@ -33,12 +33,6 @@ public class Staff {
         password = pw;
     }
     
-    /*Staff(String phoneNumber, String username, int changes){
-        this.phoneNumber = phoneNumber;
-        this.username = username;
-        this.changes = changes;
-    }*/
-    
     public void readFile(){
         detailsList.clear();
         try  {
@@ -77,10 +71,12 @@ public class Staff {
     
     public Boolean verifyUser(){
         for (var details : detailsList){
-            if (username.equals(details[1]) && password.equals(details[2])){
-                verifiedUserDetails = details;
-                userType = verifiedUserDetails[6];
-                return true;
+            if (details.length == 7){
+                if (username.equals(details[1]) && password.equals(details[2])){
+                    verifiedUserDetails = details;
+                    userType = verifiedUserDetails[6];
+                    return true;
+                }
             }
         }
         return false;
@@ -141,10 +137,12 @@ public class Staff {
     
     public String[] getVerifiedUserDetails(){
         for (var details : detailsList){
-            if (staffID == Integer.parseInt(details[0])){
-                verifiedUserDetails = details;
-                userType = verifiedUserDetails[6];
-                return verifiedUserDetails;
+            if (details.length == 7){
+                if (staffID == Integer.parseInt(details[0])){
+                    verifiedUserDetails = details;
+                    userType = verifiedUserDetails[6];
+                    return verifiedUserDetails;
+                }
             }
         }
         return null;
